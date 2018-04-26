@@ -1,19 +1,13 @@
 package bookingRoom;
 
 import java.io.IOException;
-import java.net.URL;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-public class dateController {
+public class DateController {
 	
 	@FXML
 	DatePicker arrive;
@@ -25,17 +19,21 @@ public class dateController {
 	TextField children;
 	@FXML
 	Button search;
+	@FXML
+	Button signin;
 	
+	private OpenPage open = new OpenPage();
 	
 	public void showRoom(ActionEvent event) throws IOException{
-		URL url = getClass().getResource("selectRoom.fxml");
-		FXMLLoader loader = new FXMLLoader(url);
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.show();
-		
+		open.nextPage(event,"SelectRoom.fxml");	
+	}
+	
+	public void showSignin(ActionEvent event) throws IOException{
+		open.popPage("Signin.fxml");
+	}
+	
+	public void showSignup(ActionEvent event) throws IOException{
+		open.popPage("SignUp.fxml");
 	}
 
 }
