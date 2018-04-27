@@ -18,7 +18,7 @@ public class Main extends Application {
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Booking Room");
+			primaryStage.setTitle("Reserving Room");
 			primaryStage.sizeToScene();
 			primaryStage.show();
 		} catch (Exception ex) {
