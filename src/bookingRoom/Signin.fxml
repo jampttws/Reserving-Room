@@ -8,32 +8,28 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.SigninController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="455.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.SigninController">
    <children>
-      <TextField layoutX="97.0" layoutY="170.0" prefHeight="27.0" prefWidth="238.0" />
-      <TextField layoutX="97.0" layoutY="252.0" prefHeight="30.0" prefWidth="238.0" />
-      <Label layoutX="98.0" layoutY="139.0" prefHeight="26.0" prefWidth="207.0" text="Email Address*" textFill="#6f1b1b">
+      <TextField layoutX="151.0" layoutY="151.0" prefHeight="30.0" prefWidth="238.0" />
+      <TextField layoutX="151.0" layoutY="210.0" prefHeight="30.0" prefWidth="238.0" />
+      <Label layoutX="49.0" layoutY="153.0" prefHeight="26.0" prefWidth="64.0" text="Email:" textFill="#6f1b1b">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="103.0" layoutY="230.0" text="Password" textFill="#6f1b1b">
+      <Label layoutX="49.0" layoutY="216.0" text="Password:" textFill="#6f1b1b">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="248.0" layoutY="321.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #6f1b1b#6f1b1b;" text="Sign in" textFill="WHITE">
+      <Button layoutX="179.0" layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #6f1b1b#6f1b1b;" text="Sign in" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="235.0" layoutY="382.0" text="Not a member yet?" textFill="#000000c3">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button layoutX="261.0" layoutY="403.0" mnemonicParsing="false" onAction="#showSignUp" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: #864c4c#864c4c;" text="Sign up" textFill="WHITE" />
-      <ImageView fitHeight="103.0" fitWidth="612.0" layoutX="-11.0" layoutY="-2.0">
+      <Label layoutX="229.0" layoutY="314.0" text="Not a member yet?" textFill="#000000c3" />
+      <Button layoutX="353.0" layoutY="308.0" mnemonicParsing="false" onAction="#showSignUp" prefHeight="30.0" prefWidth="72.0" style="-fx-background-color: #864c4c#864c4c;" text="Sign up" textFill="WHITE" />
+      <ImageView fitHeight="120.0" fitWidth="466.0" layoutX="-11.0" layoutY="-2.0">
          <image>
             <Image url="@../image/1640105.jpg" />
          </image>
