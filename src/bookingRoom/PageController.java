@@ -9,22 +9,38 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class OpenPage{
+public class PageController {
+	private Stage primaryStage;
+	
+	public PageController(Stage stage) {
+		this.primaryStage = stage;
+	}
 
-	public void popPage(String namefile) throws IOException{
-		URL url = getClass().getResource(namefile);
+	
+	public void openPage(String fxmlname) {
+		URL url = getClass().getResource(fxmlname);
 		FXMLLoader loader = new FXMLLoader(url);
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.show();	
+		Parent root;
+		try {
+			root = loader.load();
+			Object controller = loader.getController();
+			if (controller instanceof ViewController) {
+				((ViewController)controller).setController(this);
+			}
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			System.out.println("Can't connect fxml");;
+		}
+		
 	}
 	
 	public void nextPage(ActionEvent event,String namefile) throws IOException{
 		URL url = getClass().getResource(namefile);
 		FXMLLoader loader = new FXMLLoader(url);
 		Parent root = loader.load();
+		
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);

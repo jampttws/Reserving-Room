@@ -22,7 +22,7 @@
             <Font size="20.0" />
          </font></Label>
       <TextField fx:id="adult" layoutX="157.0" layoutY="425.0" prefHeight="40.0" prefWidth="93.0" />
-      <Label layoutX="71.0" layoutY="431.0" text="Adult:" textFill="#a19269">
+      <Label layoutX="77.0" layoutY="428.0" text="Adult:" textFill="#a19269">
          <font>
             <Font size="24.0" />
          </font></Label>
@@ -34,27 +34,30 @@
          <font>
             <Font size="14.0" />
          </font></Label>
+      <Label text="Label" />
       <ImageView fitHeight="232.0" fitWidth="913.0" layoutX="-14.0" layoutY="-1.0">
          <image>
             <Image url="@../image/169805.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="children" layoutX="449.0" layoutY="425.0" prefHeight="40.0" prefWidth="93.0" />
-      <Button fx:id="search" layoutX="628.0" layoutY="408.0" mnemonicParsing="false" onAction="#showRoom" prefHeight="68.0" prefWidth="192.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Search">
+      <Button fx:id="search" layoutX="628.0" layoutY="408.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="192.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Search">
          <font>
             <Font size="24.0" />
          </font></Button>
-      <Button layoutX="785.0" layoutY="11.0" mnemonicParsing="false" onAction="#showSignup" style="-fx-background-color: none;" text="Sign up" textFill="WHITE" underline="true">
+      <Button fx:id="signup" layoutX="785.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Sign up" textFill="WHITE" underline="true">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="signin" layoutX="720.0" layoutY="11.0" mnemonicParsing="false" onAction="#showSignin" style="-fx-background-color: none;" text="Sign in" textFill="WHITE" underline="true">
+      <Button fx:id="signin" layoutX="720.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Sign in" textFill="WHITE" underline="true">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label contentDisplay="CENTER" layoutX="528.0" layoutY="11.0" prefHeight="29.0" prefWidth="192.0" text="MEMBERS LOGIN GET 15% " textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="84.0" layoutY="384.0" text="You reserve" textFill="#a19269" />
+      <TextField fx:id="totalDate" layoutX="176.0" layoutY="378.0" prefHeight="27.0" prefWidth="132.0" />
+      <Label contentDisplay="CENTER" layoutX="504.0" layoutY="11.0" prefHeight="29.0" prefWidth="192.0" text="MEMBERS LOGIN GET 15% " textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
