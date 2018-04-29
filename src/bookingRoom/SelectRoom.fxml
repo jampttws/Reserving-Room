@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.RoomController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1535.0" prefWidth="581.0" style="-fx-background-color: white;">
          <children>
@@ -28,10 +28,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox layoutX="299.0" layoutY="293.0" prefHeight="28.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="boxDeluxe" layoutX="299.0" layoutY="293.0" prefHeight="28.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <Button layoutX="361.0" layoutY="337.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Select" />
-            <Label layoutX="67.0" layoutY="365.0" prefHeight="17.0" prefWidth="111.0" text="Add .... Baht" />
-            <Label layoutX="66.0" layoutY="384.0" prefHeight="23.0" prefWidth="101.0" text="......Baht" textFill="#23973a">
+            <Label layoutX="67.0" layoutY="365.0" prefHeight="17.0" prefWidth="111.0" text="Add 500 Baht" />
+            <Label layoutX="66.0" layoutY="384.0" prefHeight="23.0" prefWidth="101.0" text="3000 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
                </font>
@@ -47,17 +47,17 @@
                   <Image url="@../image/suite-novotel-bangkok-ploenchit-sukhumvit-1.jpeg" />
                </image>
             </ImageView>
-            <ComboBox layoutX="51.0" layoutY="674.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
-            <ComboBox layoutX="314.0" layoutY="672.0" prefHeight="27.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="bedSuite" layoutX="51.0" layoutY="674.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="boxSuite" layoutX="314.0" layoutY="672.0" prefHeight="27.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <Label layoutX="54.0" layoutY="720.0" prefHeight="17.0" prefWidth="147.0" text="&gt;Extra bed" />
-            <Label layoutX="62.0" layoutY="739.0" prefHeight="17.0" prefWidth="111.0" text="Add .... Baht" />
-            <Label layoutX="64.0" layoutY="758.0" prefHeight="23.0" prefWidth="101.0" text="......Baht" textFill="#23973a">
+            <Label layoutX="62.0" layoutY="739.0" prefHeight="17.0" prefWidth="111.0" text="Add 500 Baht" />
+            <Label layoutX="64.0" layoutY="758.0" prefHeight="23.0" prefWidth="101.0" text="3500 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <Button layoutX="371.0" layoutY="715.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Select" />
-            <ComboBox layoutX="63.0" layoutY="293.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="bedDeluxe" layoutX="63.0" layoutY="293.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <ImageView fitHeight="177.0" fitWidth="442.0" layoutX="51.0" layoutY="841.0">
                <image>
                   <Image url="@../image/intro-superior-02.jpg" />
@@ -68,11 +68,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox layoutX="48.0" layoutY="1041.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
-            <ComboBox layoutX="313.0" layoutY="1041.0" prefHeight="27.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="bedSupe" layoutX="48.0" layoutY="1041.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="boxSupe" layoutX="313.0" layoutY="1041.0" prefHeight="27.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <Label layoutX="50.0" layoutY="1089.0" prefHeight="17.0" prefWidth="147.0" text="&gt;Extra bed" />
-            <Label layoutX="59.0" layoutY="1465.0" prefHeight="17.0" prefWidth="111.0" text="Add .... Baht" />
-            <Label layoutX="53.0" layoutY="1128.0" prefHeight="23.0" prefWidth="101.0" text="......Baht" textFill="#23973a">
+            <Label layoutX="59.0" layoutY="1465.0" prefHeight="17.0" prefWidth="111.0" text="Add 500 Baht" />
+            <Label layoutX="53.0" layoutY="1128.0" prefHeight="23.0" prefWidth="101.0" text="2500 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
                </font>
@@ -88,16 +88,20 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox layoutX="53.0" layoutY="1398.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
-            <ComboBox layoutX="335.0" layoutY="1398.0" prefHeight="27.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="bedStandard" layoutX="53.0" layoutY="1398.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="boxStandard" layoutX="335.0" layoutY="1398.0" prefHeight="27.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <Label layoutX="52.0" layoutY="1441.0" prefHeight="17.0" prefWidth="147.0" text="&gt;Extra bed" />
-            <Label layoutX="59.0" layoutY="1112.0" prefHeight="17.0" prefWidth="111.0" text="Add .... Baht" />
-            <Label layoutX="53.0" layoutY="1485.0" prefHeight="23.0" prefWidth="101.0" text="......Baht" textFill="#23973a">
+            <Label layoutX="59.0" layoutY="1112.0" prefHeight="17.0" prefWidth="111.0" text="Add 500 Baht" />
+            <Label layoutX="53.0" layoutY="1485.0" prefHeight="23.0" prefWidth="101.0" text="2000 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <Button layoutX="390.0" layoutY="1436.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Select" />
+            <Button layoutX="363.0" layoutY="384.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
+            <Button layoutX="370.0" layoutY="756.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
+            <Button layoutX="372.0" layoutY="1126.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
+            <Button layoutX="392.0" layoutY="1481.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

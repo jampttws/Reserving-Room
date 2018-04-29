@@ -2,10 +2,12 @@ package bookingRoom;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -13,9 +15,50 @@ public class RoomController {
 	
 	
 	@FXML
-	Label label;
+	ComboBox<box> boxDeluxe;
 	@FXML
-	TextField text;
+	ComboBox<box> boxSuite;
+	@FXML
+	ComboBox<box> boxSupe;
+	@FXML
+	ComboBox<box> boxStandard;
+	@FXML
+	ComboBox<Bed> bedDeluxe;
+	@FXML
+	ComboBox<Bed> bedSuite;
+	@FXML
+	ComboBox<Bed> bedSupe;
+	@FXML
+	ComboBox<Bed> bedStandard;
+	
+	public String [] typeBed = {"Bed","King","Double x2"};
+	
+	@FXML
+	public void initialize(){
+		addBreakfast(boxDeluxe);
+		addBreakfast(boxSuite);
+		addBreakfast(boxSupe);
+		addBreakfast(boxStandard);
+		selectBed(bedDeluxe);
+		selectBed(bedStandard);
+		selectBed(bedSuite);
+		selectBed(bedSupe);
+	}
+	
+	public void selectBed(ComboBox<Bed> bed){
+		if(bed != null){
+			bed.getItems().addAll(Bed.values());
+			bed.getSelectionModel().select(0);
+		}
+	}
+	
+	public void addBreakfast(ComboBox<box> breakfast){
+		if(breakfast != null){
+			breakfast.getItems().addAll(box.values());
+			breakfast.getSelectionModel().select(0);
+		}
+		
+	}
 	
 	public int read(){
 		File file = new File("src/bookingRoom/text.txt");
