@@ -29,7 +29,7 @@
                </font>
             </Label>
             <ComboBox fx:id="boxDeluxe" layoutX="299.0" layoutY="293.0" prefHeight="28.0" prefWidth="150.0" promptText="Breakfast" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
-            <Button layoutX="361.0" layoutY="337.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Select" />
+            <Button layoutX="344.0" layoutY="381.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
             <Label layoutX="67.0" layoutY="365.0" prefHeight="17.0" prefWidth="111.0" text="Add 500 Baht" />
             <Label layoutX="66.0" layoutY="384.0" prefHeight="23.0" prefWidth="101.0" text="3000 Baht" textFill="#23973a">
                <font>
@@ -56,7 +56,6 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="371.0" layoutY="715.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Select" />
             <ComboBox fx:id="bedDeluxe" layoutX="63.0" layoutY="293.0" prefWidth="150.0" promptText="Bed" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <ImageView fitHeight="177.0" fitWidth="442.0" layoutX="51.0" layoutY="841.0">
                <image>
@@ -77,7 +76,6 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="371.0" layoutY="1084.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Select" />
             <ImageView fitHeight="177.0" fitWidth="442.0" layoutX="53.0" layoutY="1204.0">
                <image>
                   <Image url="@../image/StandardRoom.jpg" />
@@ -97,11 +95,14 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="390.0" layoutY="1436.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Select" />
-            <Button layoutX="363.0" layoutY="384.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
-            <Button layoutX="370.0" layoutY="756.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
-            <Button layoutX="372.0" layoutY="1126.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
-            <Button layoutX="392.0" layoutY="1481.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #640d0d#640d0d;" text="Add" textFill="WHITE" />
+            <Button layoutX="364.0" layoutY="338.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add" />
+            <Button layoutX="375.0" layoutY="714.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add" />
+            <Button layoutX="359.0" layoutY="754.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
+            <Button layoutX="384.0" layoutY="1470.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
+            <Button layoutX="374.0" layoutY="1083.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add" />
+            <Button layoutX="402.0" layoutY="1436.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add" />
+            <Button layoutX="360.0" layoutY="1119.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
+            <Label fx:id="costumerData" layoutX="256.0" layoutY="25.0" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

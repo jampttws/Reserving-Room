@@ -1,5 +1,6 @@
 package bookingRoom;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
@@ -32,7 +34,7 @@ public class DateController extends ViewController {
 	@FXML
 	Button signup;
 	@FXML
-	TextField totalDate;
+	Label totalDate;
 	
 	private PageController open = super.getController();
 	private LocalDate now;
@@ -44,9 +46,11 @@ public class DateController extends ViewController {
 		search.setOnAction(this::showRoom);
 		signin.setOnAction(this::showSignin);
 		signup.setOnAction(this::showSignup);
-		totalDate.setOnAction(this::handleDate);
 		arrive.setOnAction(this::warnDate);
 		departure.setOnAction(this::warnDate);
+//		totalDate.setOnAction(this::handleDate);
+//		handleDate();
+		
 	}
 	
 	/** collect all data in this fxml */
@@ -60,7 +64,7 @@ public class DateController extends ViewController {
 	}
 	
 	/** Show date that costumer can reserve. */
-	public void handleDate(ActionEvent event){
+	public void handleDate(){
 		date = new DateManage(arrive.getValue(), departure.getValue());
 		totalDate.setText(String.format("%d days", date.days()));	
 	}
@@ -73,13 +77,17 @@ public class DateController extends ViewController {
 		alert = new Alert(AlertType.WARNING);
 		alert.setHeaderText("Please check your reserve date again");
 		alert.showAndWait();
-		}	
+		}
+		handleDate();
 	}
 	
-	/** Show in another fxml. */
-	public void showRoom(ActionEvent event){
-		open.openPage("SelectRoom.fxml");
+	/** Show in another fxml. 
+	 * @throws IOException */
+	public void showRoom(ActionEvent event) {
 		collect();
+		open.openPage("SelectRoom.fxml");
+//		open.nextPage(event,"SelectRoom.fxml");
+		
 	}
 	
 	/** Show in another fxml. */

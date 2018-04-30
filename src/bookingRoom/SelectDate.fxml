@@ -55,12 +55,12 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="84.0" layoutY="384.0" text="You reserve" textFill="#a19269" />
-      <TextField fx:id="totalDate" layoutX="176.0" layoutY="378.0" prefHeight="27.0" prefWidth="132.0" />
+      <Label layoutX="84.0" layoutY="384.0" text="You reserve :" textFill="#a19269" />
       <Label contentDisplay="CENTER" layoutX="504.0" layoutY="11.0" prefHeight="29.0" prefWidth="192.0" text="MEMBERS LOGIN GET 15% " textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Label fx:id="totalDate" layoutX="187.0" layoutY="384.0" />
    </children>
 </Pane>

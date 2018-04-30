@@ -3,6 +3,7 @@ package bookingRoom;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javafx.event.ActionEvent;
@@ -30,8 +31,11 @@ public class RoomController {
 	ComboBox<Bed> bedSupe;
 	@FXML
 	ComboBox<Bed> bedStandard;
+	@FXML
+	Label costumerData;
 	
 	public String [] typeBed = {"Bed","King","Double x2"};
+	public static List<String> list = new ArrayList<>();
 	
 	@FXML
 	public void initialize(){
@@ -43,6 +47,13 @@ public class RoomController {
 		selectBed(bedStandard);
 		selectBed(bedSuite);
 		selectBed(bedSupe);
+		showData();
+	}
+	
+	
+	public void showData(){
+		read();
+		costumerData.setText(String.format("You reserve %s days including adult %s children %s",list.get(2),list.get(3),list.get(4)));
 	}
 	
 	public void selectBed(ComboBox<Bed> bed){
@@ -60,24 +71,30 @@ public class RoomController {
 		
 	}
 	
-	public int read(){
+	
+	public void read(){
 		File file = new File("src/bookingRoom/text.txt");
 		try {
 			Scanner scan = new Scanner(file);
 			while(scan.hasNextLine()){
 				String line = scan.nextLine().trim();
 				String[] text = line.split(";");
-				return Integer.parseInt(text[2]);				
+				for (int i = 0; i < text.length; i++) {
+					list.add(text[i]);
+				}			
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("file not found");
 		}
-		return 0;		
+			
 	}
 	
 	public static void main(String[] args) {
 		RoomController r = new RoomController();
-		System.out.println(r.read());
+		r.read();
+		for (String type : list) {
+			System.out.println(type);
+		}
 	}
 	
 

@@ -31,20 +31,26 @@ public class PageController {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
-			System.out.println("Can't connect fxml");;
+			System.out.println("Can't connect fxml");
 		}
 		
 	}
 	
-	public void nextPage(ActionEvent event,String namefile) throws IOException{
+	public void nextPage(ActionEvent event,String namefile) {
 		URL url = getClass().getResource(namefile);
 		FXMLLoader loader = new FXMLLoader(url);
-		Parent root = loader.load();
+		Parent root;
+		try {
+			root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			System.out.println("Can't connect fxml");
+		}
 		
-		Scene scene = new Scene(root);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-		stage.show();
+		
 	}
 
 }
