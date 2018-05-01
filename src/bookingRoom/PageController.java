@@ -16,7 +16,6 @@ public class PageController {
 		this.primaryStage = stage;
 	}
 
-	
 	public void openPage(String fxmlname) {
 		URL url = getClass().getResource(fxmlname);
 		FXMLLoader loader = new FXMLLoader(url);
@@ -32,8 +31,7 @@ public class PageController {
 			primaryStage.show();
 		} catch (IOException e) {
 			System.out.println("Can't connect fxml");
-		}
-		
+		}	
 	}
 	
 	public void nextPage(ActionEvent event,String namefile) {

@@ -16,7 +16,7 @@ public class SigninController extends ViewController{
 	}
 	
 	public void showSignUp(ActionEvent event){
-			open.openPage("SignUp.fxml");
+			open.nextPage(event,"SignUp.fxml");
 	}
 	
 

@@ -8,45 +8,40 @@ import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
+/**
+ * Select the room and other option in hotel
+ * @author Narisa Singngam
+ *
+ */
 public class RoomController {
 	
-	
 	@FXML
-	ComboBox<box> boxDeluxe;
+	ComboBox<Room> bedDeluxe;
 	@FXML
-	ComboBox<box> boxSuite;
+	ComboBox<Room> bedSuite;
 	@FXML
-	ComboBox<box> boxSupe;
+	ComboBox<Room> bedSupe;
 	@FXML
-	ComboBox<box> boxStandard;
-	@FXML
-	ComboBox<Bed> bedDeluxe;
-	@FXML
-	ComboBox<Bed> bedSuite;
-	@FXML
-	ComboBox<Bed> bedSupe;
-	@FXML
-	ComboBox<Bed> bedStandard;
+	ComboBox<Room> bedStandard;
 	@FXML
 	Label costumerData;
+	@FXML
+	Button breakfast;
 	
-	public String [] typeBed = {"Bed","King","Double x2"};
 	public static List<String> list = new ArrayList<>();
 	
 	@FXML
 	public void initialize(){
-		addBreakfast(boxDeluxe);
-		addBreakfast(boxSuite);
-		addBreakfast(boxSupe);
-		addBreakfast(boxStandard);
+
 		selectBed(bedDeluxe);
 		selectBed(bedStandard);
 		selectBed(bedSuite);
 		selectBed(bedSupe);
+//		breakfast.setOnAction(this::addBreakfast);
 		showData();
 	}
 	
@@ -56,22 +51,23 @@ public class RoomController {
 		costumerData.setText(String.format("You reserve %s days including adult %s children %s",list.get(2),list.get(3),list.get(4)));
 	}
 	
-	public void selectBed(ComboBox<Bed> bed){
+	/** Add type of bed in combo box*/
+	public void selectBed(ComboBox<Room> bed){
 		if(bed != null){
-			bed.getItems().addAll(Bed.values());
+			bed.getItems().addAll(Room.values());
 			bed.getSelectionModel().select(0);
 		}
 	}
 	
-	public void addBreakfast(ComboBox<box> breakfast){
-		if(breakfast != null){
-			breakfast.getItems().addAll(box.values());
-			breakfast.getSelectionModel().select(0);
+	/** Add Breakfast in combo box */
+	public void addBreakfast(ActionEvent event){
+		list.add("yes");
+		for (String type : list) {
+			System.out.println(type);
 		}
-		
 	}
 	
-	
+	/** Read costumer data. */
 	public void read(){
 		File file = new File("src/bookingRoom/text.txt");
 		try {
@@ -82,7 +78,7 @@ public class RoomController {
 				for (int i = 0; i < text.length; i++) {
 					list.add(text[i]);
 				}			
-			}
+			}	
 		} catch (FileNotFoundException e) {
 			System.out.println("file not found");
 		}
