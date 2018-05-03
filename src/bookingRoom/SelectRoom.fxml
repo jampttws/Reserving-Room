@@ -11,7 +11,7 @@
 
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.RoomController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1577.0" prefWidth="581.0" style="-fx-background-color: white;">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1618.0" prefWidth="581.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="10.0" layoutY="4.0" prefHeight="21.0" prefWidth="131.0" text="Choose your room" textFill="#a46161">
                <font>
@@ -29,7 +29,7 @@
                </font>
             </Label>
             <Button layoutX="344.0" layoutY="395.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
-            <Label layoutX="59.0" layoutY="337.0" prefHeight="17.0" prefWidth="111.0" text="&gt;Breakfast" />
+            <Label layoutX="59.0" layoutY="337.0" prefHeight="17.0" prefWidth="135.0" text="&gt;Breakfast 300Baht" />
             <Label layoutX="63.0" layoutY="397.0" prefHeight="23.0" prefWidth="101.0" text="3000 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
@@ -46,13 +46,13 @@
                   <Image url="@../image/suite-novotel-bangkok-ploenchit-sukhumvit-1.jpeg" />
                </image>
             </ImageView>
-            <ComboBox fx:id="bedSuite" layoutX="47.0" layoutY="661.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="numSuite" layoutX="47.0" layoutY="661.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <Label layoutX="63.0" layoutY="769.0" prefHeight="23.0" prefWidth="101.0" text="3500 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="bedDeluxe" layoutX="63.0" layoutY="293.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="numDeluxe" layoutX="63.0" layoutY="293.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <ImageView fitHeight="177.0" fitWidth="442.0" layoutX="51.0" layoutY="841.0">
                <image>
                   <Image url="@../image/intro-superior-02.jpg" />
@@ -63,7 +63,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="bedSupe" layoutX="48.0" layoutY="1033.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="numSupe" layoutX="48.0" layoutY="1033.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <Label layoutX="53.0" layoutY="1128.0" prefHeight="23.0" prefWidth="101.0" text="2500 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
@@ -79,7 +79,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="bedStandard" layoutX="53.0" layoutY="1398.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
+            <ComboBox fx:id="numStandard" layoutX="53.0" layoutY="1398.0" prefWidth="150.0" promptText="Room" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" />
             <Label layoutX="53.0" layoutY="1499.0" prefHeight="23.0" prefWidth="101.0" text="2000 Baht" textFill="#23973a">
                <font>
                   <Font size="18.0" />
@@ -112,53 +112,57 @@
                   <Font size="12.0" />
                </font>
             </Label>
-            <Button layoutX="406.0" layoutY="35.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #9d1818#9d1818;" text="Confirm" textFill="WHITE" />
-            <Button fx:id="breakfast" layoutX="363.0" layoutY="334.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Button fx:id="confirm" layoutX="406.0" layoutY="35.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #9d1818#9d1818;" text="Confirm" textFill="WHITE" />
+            <Button fx:id="breakfastDeluxe" layoutX="363.0" layoutY="334.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button layoutX="363.0" layoutY="363.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Button fx:id="bedDeluxe" layoutX="363.0" layoutY="363.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
             <Label layoutX="51.0" layoutY="738.0" prefHeight="17.0" prefWidth="176.0" text="&gt;Extra bed  500 Baht" />
-            <Label layoutX="49.0" layoutY="700.0" prefHeight="17.0" prefWidth="111.0" text="&gt;Breakfast" />
-            <Button layoutX="373.0" layoutY="697.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Label layoutX="49.0" layoutY="700.0" prefHeight="17.0" prefWidth="145.0" text="&gt;Breakfast 300 Baht" />
+            <Button fx:id="breakfastSuite" layoutX="373.0" layoutY="697.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button layoutX="374.0" layoutY="727.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Button fx:id="bedSuite" layoutX="374.0" layoutY="727.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Label layoutX="47.0" layoutY="1069.0" prefHeight="17.0" prefWidth="111.0" text="&gt;Breakfast" />
+            <Label layoutX="47.0" layoutY="1069.0" prefHeight="17.0" prefWidth="139.0" text="&gt;Breakfast 300 Baht" />
             <Label layoutX="50.0" layoutY="1103.0" prefHeight="17.0" prefWidth="176.0" text="&gt;Extra bed  500 Baht" />
-            <Button layoutX="367.0" layoutY="1058.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Button fx:id="breakfastSupe" layoutX="367.0" layoutY="1058.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button layoutX="367.0" layoutY="1090.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Button fx:id="bedSupe" layoutX="367.0" layoutY="1090.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Label layoutX="58.0" layoutY="1439.0" prefHeight="17.0" prefWidth="111.0" text="&gt;Breakfast" />
+            <Label layoutX="58.0" layoutY="1439.0" prefHeight="17.0" prefWidth="133.0" text="&gt;Breakfast 300 Baht" />
             <Label layoutX="53.0" layoutY="1466.0" prefHeight="17.0" prefWidth="176.0" text="&gt;Extra bed  500 Baht" />
-            <Button layoutX="387.0" layoutY="1428.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Button fx:id="breakfastStandard" layoutX="387.0" layoutY="1428.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button layoutX="387.0" layoutY="1463.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
+            <Button fx:id="bedStandard" layoutX="387.0" layoutY="1463.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="85.0" style="-fx-background-color: #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b #bf9e4b#bf9e4b;" text="Add">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
+            <Label fx:id="deluxe" layoutX="361.0" layoutY="64.0" prefHeight="17.0" prefWidth="124.0" text="Label" />
+            <Label fx:id="suite" layoutX="363.0" layoutY="440.0" prefHeight="17.0" prefWidth="121.0" text="Label" />
+            <Label fx:id="superior" layoutX="372.0" layoutY="808.0" prefHeight="17.0" prefWidth="116.0" text="Label" />
+            <Label fx:id="standard" layoutX="369.0" layoutY="1165.0" prefHeight="17.0" prefWidth="128.0" text="Label" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

@@ -5,21 +5,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class CollectData {
+public class BookingRequest {
 	
 	private LocalDate checkin;
 	private LocalDate checkout;
 	private int day;
-	private String child;
-	private String adult;
+	private int child;
+	private int adult;
 
-	public CollectData(LocalDate checkin,LocalDate checkout,int day,String adult,String child){
+	public BookingRequest(LocalDate checkin,LocalDate checkout,int day,int adult,int child){
 		this.checkin = checkin;
 		this.checkout = checkout;
 		this.day = day;
 		this.child = child;
 		this.adult = adult;
 	}
+	
 	
 	public void add(){
 		try {

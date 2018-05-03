@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
  * @author Narisa Singngam
  *
  */
-public class DateController extends ViewController {
+public class HomeController extends ViewController {
 	
 	@FXML
 	DatePicker arrive;
@@ -51,24 +51,23 @@ public class DateController extends ViewController {
 	
 	/** collect all data in this fxml */
 	public void collect(){
-		date = new DateManage(arrive.getValue(), departure.getValue());
-		String numAdult = adult.getText().trim();
-		String numChildren = children.getText().trim();
-		if(numAdult.equals("")) numAdult = "0";
-		if(numChildren.equals("")) numChildren = "0";
-		CollectData data = new CollectData(date.getCheckin(),date.getCheckout(), date.days(), numAdult, numChildren);
+		if(adult.getText().equals("")) adult.setText("0");
+		if(children.getText().equals("")) children.setText("0");
+		int numAdult = Integer.parseInt(adult.getText().trim());
+		int numChildren = Integer.parseInt(children.getText().trim());
+		BookingRequest data = new BookingRequest(date.getCheckin(),date.getCheckout(), date.days(), numAdult, numChildren);
 		data.add();
 			
 	}
 	
 	/** Show date that costumer can reserve. */
 	public void handleDate(){
-		date = new DateManage(arrive.getValue(), departure.getValue());
 		totalDate.setText(String.format("%d days", date.days()));	
 	}
 	
 	/**Show when choose the past date */
 	public void warnDate(ActionEvent event){
+		if(arrive.getValue() == null || departure.getValue() == null) return;
 		now = LocalDate.now();
 		date = new DateManage(arrive.getValue(), departure.getValue());
 		if(now.isAfter(date.getCheckin()) || now.isAfter(date.getCheckout())){

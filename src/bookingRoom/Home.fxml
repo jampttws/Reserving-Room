@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="897.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.DateController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="897.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.HomeController">
    <children>
       <DatePicker fx:id="arrive" layoutX="71.0" layoutY="311.0" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #a19269#a19269;" />
       <DatePicker fx:id="departure" layoutX="528.0" layoutY="311.0" prefHeight="40.0" prefWidth="297.0" style="-fx-background-color: #a19269#a19269;" />
