@@ -1,6 +1,12 @@
-package bookingRoom;
+package controller;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import bookingRoom.BookingRequest;
+import bookingRoom.DateManage;
+import bookingRoom.PageController;
+import bookingRoom.ViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -39,6 +45,7 @@ public class HomeController extends ViewController {
 	private LocalDate now;
 	private DateManage date;
 	private Alert alert;
+	private static BookingRequest book = BookingRequest.getInstance();
 	
 	@FXML
 	public void initialize(){
@@ -55,9 +62,12 @@ public class HomeController extends ViewController {
 		if(children.getText().equals("")) children.setText("0");
 		int numAdult = Integer.parseInt(adult.getText().trim());
 		int numChildren = Integer.parseInt(children.getText().trim());
-		BookingRequest data = new BookingRequest(date.getCheckin(),date.getCheckout(), date.days(), numAdult, numChildren);
-		data.add();
+		book.add(date.getCheckin(),date.getCheckout(), date.days(), numAdult, numChildren);
 			
+	}
+	/** Read booking request of costumer*/
+	public static List<String> readfile(){
+		return book.read();
 	}
 	
 	/** Show date that costumer can reserve. */
@@ -82,7 +92,6 @@ public class HomeController extends ViewController {
 	public void showRoom(ActionEvent event) {
 		collect();
 		open.openPage("SelectRoom.fxml");
-//		open.nextPage(event,"SelectRoom.fxml");
 		
 	}
 	

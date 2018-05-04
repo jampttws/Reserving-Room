@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="897.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.ConfirmController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="897.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfirmController">
    <children>
       <Label layoutX="48.0" layoutY="187.0" text="Name :">
          <font>
@@ -32,6 +32,8 @@
             <Image url="@../image/Black_Sand_Color-Volcanic_Beach-1070x423.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="confirmBed" layoutX="532.0" layoutY="189.0" text="Label" />
+      <Label fx:id="confirmBed" layoutX="532.0" layoutY="220.0" text="l" />
+      <Label fx:id="confirmBreakfast" layoutX="532.0" layoutY="243.0" text="l" />
+      <Label fx:id="bookingDay" layoutX="532.0" layoutY="189.0" text="Label" />
    </children>
 </Pane>

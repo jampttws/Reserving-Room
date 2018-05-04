@@ -1,5 +1,7 @@
-package bookingRoom;
+package controller;
 
+import bookingRoom.PageController;
+import bookingRoom.ViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

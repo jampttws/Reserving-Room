@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bookingRoom.RoomController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RoomController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1618.0" prefWidth="581.0" style="-fx-background-color: white;">
          <children>
@@ -28,7 +28,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="344.0" layoutY="395.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
+            <Button fx:id="selectDelux" layoutX="344.0" layoutY="395.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
             <Label layoutX="59.0" layoutY="337.0" prefHeight="17.0" prefWidth="135.0" text="&gt;Breakfast 300Baht" />
             <Label layoutX="63.0" layoutY="397.0" prefHeight="23.0" prefWidth="101.0" text="3000 Baht" textFill="#23973a">
                <font>
@@ -85,9 +85,9 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="359.0" layoutY="767.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
-            <Button layoutX="384.0" layoutY="1497.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
-            <Button layoutX="359.0" layoutY="1126.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
+            <Button fx:id="selectSuite" layoutX="359.0" layoutY="767.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
+            <Button fx:id="selectStandard" layoutX="384.0" layoutY="1497.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
+            <Button fx:id="selectSupe" layoutX="359.0" layoutY="1126.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #640d0d#640d0d #640d0d#640d0d;" text="Select Room" textFill="WHITE" />
             <Label fx:id="costumerData" layoutX="263.0" layoutY="5.0" prefHeight="17.0" prefWidth="290.0">
                <font>
                   <Font size="12.0" />
