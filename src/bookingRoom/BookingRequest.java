@@ -57,5 +57,9 @@ public class BookingRequest {
 			System.out.println("file not found");
 		}
 	}
+	
+	public static void main(String[] args){
+//		System.out.println(BookingRequest.getInstance().getListFile().get(0));
+	}
 
 }

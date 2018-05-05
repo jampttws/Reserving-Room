@@ -2,10 +2,13 @@ package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import bookingRoom.Booked;
+import bookingRoom.BookingRequest;
 import bookingRoom.DatabaseManage;
 import bookingRoom.PageController;
 import bookingRoom.Total;
@@ -14,9 +17,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+
 
 /**
  * Select the room and other option in hotel
@@ -77,12 +83,8 @@ public class RoomController extends ViewController{
 	@FXML
 	public void initialize(){
 		showData();
+		setCombobox();
 		confirm.setOnAction(this::showComfirmPage);
-		numDeluxe.setItems(room);
-		numStandard.setItems(room);
-		numSuite.setItems(room);
-		numSupe.setItems(room);
-//		selectDelux.setOnAction(this::selectDeluxRoom);
 		breakfastDeluxe.setOnAction(this::addBreakfast);
 		breakfastSuite.setOnAction(this::addBreakfast);
 		breakfastSupe.setOnAction(this::addBreakfast);
@@ -91,12 +93,24 @@ public class RoomController extends ViewController{
 		bedSuite.setOnAction(this::addExtraBedButton);
 		bedSupe.setOnAction(this::addExtraBedButton);
 		bedStandard.setOnAction(this::addExtraBedButton);
-		deluxe.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("dlx").size()));
-		suite.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("sut").size()));
-		superior.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("spr").size()));
-		standard.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("std").size()));
+		selectDelux.setOnAction(this::selectDeluxRoom);
+		selectSuite.setOnAction(this::selectSuiteRoom);
+		selectSupe.setOnAction(this::selectSupeRoom);
+		selectStandard.setOnAction(this::selectStandardRoom);
+		
 	}
 	
+	@FXML
+	public void setCombobox(){
+		numDeluxe.setItems(room);
+		numDeluxe.getSelectionModel().select(0);
+		numStandard.setItems(room);
+		numStandard.getSelectionModel().select(0);
+		numSuite.setItems(room);
+		numSuite.getSelectionModel().select(0);
+		numSupe.setItems(room);
+		numSupe.getSelectionModel().select(0);
+	}
 	
 	/** Open ConfirmReserving page */
 	public void showComfirmPage(ActionEvent event){
@@ -107,6 +121,10 @@ public class RoomController extends ViewController{
 		List<String> readfile = HomeController.readfile();
 		costumerData.setText(String.format("You reserve %s days including adult %s children %s"
 				,readfile.get(2),readfile.get(3),readfile.get(4)));
+		deluxe.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("dlx").size()));
+		suite.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("sut").size()));
+		superior.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("spr").size()));
+		standard.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("std").size()));
 	}
 
 	/** Add breakfast */
@@ -114,28 +132,78 @@ public class RoomController extends ViewController{
 		total.addbreakfast();
 	}
 	
-	/** select number of room*/
-	public void selectSupeRoom(ActionEvent event){
+	public static List<String> SprList = null;
+	public static List<String> SutList = null;
+	public static List<String> StdList = null;
+	public static List<String> DlxList = null;
+	
+	/** select number of room */
+	public void selectSupeRoom(ActionEvent event) {
 		int numRoom = (int) numSupe.getSelectionModel().getSelectedItem();
-		System.out.println(numRoom);
+		int cost = numRoom * 2500;
+		total.addCost((cost));
+		total.setNameRoom("Supe");
+		if(!canReserve("spr", numRoom)){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setContentText("You cannot reserve this room on this date.");
+			alert.showAndWait();
+		} 
+			SprList = Select("spr", numRoom);
+		
 	}
 	
-	/** select number of room*/
-	public void selectStandardRoom(ActionEvent event){
+	/** Print Room in class Confirmcontroller*/
+	public static List<Integer> printRoom(){
+		return total.getTypeRoom();
+	}
+	
+	
+	/** select number of room */
+	public void selectStandardRoom(ActionEvent event) {
 		int numRoom = (int) numStandard.getSelectionModel().getSelectedItem();
-		System.out.println(numRoom);
+		int cost = numRoom * 2000;	
+		total.addCost((cost));
+		if(!canReserve("spr", numRoom)){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setContentText("You cannot reserve this room on this date.");
+			alert.showAndWait();
+		} 
+	    StdList = Select("std", numRoom);
+		
 	}
 	
-	/** select number of room*/
+
+	
+	/** select number of room */
 	public void selectSuiteRoom(ActionEvent event){
 		int numRoom = (int) numSuite.getSelectionModel().getSelectedItem();
-		System.out.println(numRoom);
+		int cost = numRoom * 3500;
+		total.addCost((cost));
+		if(!canReserve("spr", numRoom)){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setContentText("You cannot reserve this room on this date.");
+			alert.showAndWait();
+		}
+			SutList = Select("sut", numRoom);
+		
 	}
 	
-	/** select number of room*/
-	public void selectDeluxRoom(ActionEvent event){
+	/** select number of room */
+	public void selectDeluxRoom(ActionEvent event) {
 		int numRoom = (int) numDeluxe.getSelectionModel().getSelectedItem();
-		System.out.println(numRoom);
+		int cost = numRoom * 3000;
+		total.addCost((cost));
+		if(!canReserve("spr", numRoom)){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setContentText("You cannot reserve this room on this date.");
+			alert.showAndWait();
+		}
+			DlxList = Select("dlx", numRoom);
+		
 	}
 	
 	/** Sum all breakfast*/
@@ -161,5 +229,51 @@ public class RoomController extends ViewController{
 	public static int countExtraBed(){
 		return total.getBedList().size(); 
 	}
+	
+	public static List<String> Select(String room, int number) {
+		List<String> list = DatabaseManage.SuggestRoom(room);
+		List<String> newList = new ArrayList<String>();
+		for(int i = 1; i <= number; i++){
+		   newList.add(list.get(0));
+		   list.remove(0);
+		}
+		return newList;
+	}
+	
+	
+	public static boolean canReserve(String room, int number){
+		String arrive = HomeController.readfile().get(0);
+		String depart = HomeController.readfile().get(1);
+		for(String str : Select(room, number)){
+			for(Booked b : DatabaseManage.bookedList()){
+				if(str.equals(b.getRoomCode())){
+					if(arrive.equals(b.getArrive()) || depart.equals(b.getDepart())) return false;
+					else if(arrive.equals(b.getDepart()) || depart.equals(b.getArrive())) return false;
+					else if(arrive.compareTo(b.getArrive()) < 0) return false;
+					else if(depart.compareTo(b.getDepart()) > 0) return false;
+					else return true;
+				} 
+				return true;
+			}
+		}
+		return true;
+	}
+	
+	public static void ty() throws SQLException{
+//		System.out.println(HomeController.readfile().get(0));
+		if(canReserve("dlx1",1)){
+			System.out.println("123");
+		}else{
+			System.out.println("ควย");
+		}
+	}
+	
+	
+	
+	public static void main(String[] args) throws SQLException{
+		ty();
+		
+	}
 
+	
 }

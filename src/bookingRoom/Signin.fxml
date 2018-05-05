@@ -10,19 +10,19 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="472.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SigninController">
    <children>
-      <Label layoutX="46.0" layoutY="147.0" text="Email:" textFill="#75210e">
+      <Label layoutX="46.0" layoutY="147.0" text="Name:" textFill="#75210e">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="153.0" layoutY="145.0" prefHeight="27.0" prefWidth="221.0" />
+      <TextField fx:id="name" layoutX="153.0" layoutY="145.0" prefHeight="27.0" prefWidth="221.0" />
       <Label layoutX="46.0" layoutY="206.0" text="Password:" textFill="#75210e">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="153.0" layoutY="204.0" prefHeight="27.0" prefWidth="221.0" />
-      <Button layoutX="187.0" layoutY="268.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #75210e#75210e;" text="Sign Up" textFill="WHITE" />
+      <TextField fx:id="password" layoutX="153.0" layoutY="204.0" prefHeight="27.0" prefWidth="221.0" />
+      <Button fx:id="signin" layoutX="187.0" layoutY="268.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #75210e#75210e;" text="Sign In" textFill="WHITE" />
       <ImageView fitHeight="114.0" fitWidth="472.0">
          <image>
             <Image url="@../image/1640105.jpg" />

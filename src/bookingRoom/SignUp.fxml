@@ -8,31 +8,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="472.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="472.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignupController">
    <children>
       <ImageView fitHeight="113.0" fitWidth="472.0" layoutX="-1.0" layoutY="-4.0">
          <image>
             <Image url="@../image/Beach.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="46.0" layoutY="147.0" text="Email:" textFill="#386432">
+      <Label layoutX="46.0" layoutY="147.0" text="Name:" textFill="#386432">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="153.0" layoutY="145.0" prefHeight="27.0" prefWidth="221.0" />
+      <TextField fx:id="name" layoutX="153.0" layoutY="145.0" prefHeight="27.0" prefWidth="221.0" />
       <Label layoutX="46.0" layoutY="206.0" text="Password:" textFill="#386432">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="153.0" layoutY="204.0" prefHeight="27.0" prefWidth="221.0" />
-      <Button layoutX="187.0" layoutY="301.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #386432#386432;" text="Sign Up" textFill="WHITE" />
+      <TextField fx:id="password" layoutX="153.0" layoutY="204.0" prefHeight="27.0" prefWidth="221.0" />
+      <Button fx:id="signup" layoutX="187.0" layoutY="301.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #386432#386432;" text="Sign Up" textFill="WHITE" />
       <Label layoutX="46.0" layoutY="250.0" text="Confirm:" textFill="#386432">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="153.0" layoutY="248.0" prefHeight="27.0" prefWidth="221.0" />
+      <TextField fx:id="confirmpass" layoutX="153.0" layoutY="248.0" prefHeight="27.0" prefWidth="221.0" />
    </children>
 </Pane>
