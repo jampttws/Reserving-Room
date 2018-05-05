@@ -1,6 +1,5 @@
 package bookingRoom;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Booked {
@@ -11,15 +10,16 @@ public class Booked {
 	private String name;
 	private String reserveCode;
     private LocalDate date = LocalDate.now();
-    private int num = 0;
+    private static int num = 0;
     
 	
 	public Booked(String room, String arrive, String depart, String name){
-		this.roomCode = roomCode;
+
+		this.roomCode = room;
 		this.arrive = arrive;
 		this.depart = depart;
 		this.name = name;
-		this.reserveCode = String.format("%d%d%d%d", date.getDayOfYear(), date.getMonthValue(), date.getYear(), ++num);
+		this.reserveCode = String.format("%d%d%d%d", date.getDayOfMonth(), date.getMonthValue(), date.getYear(), ++num);
 	}
 
 	public String getRoomCode() {
@@ -41,6 +41,7 @@ public class Booked {
 	public int getReserveCode(){
 		return Integer.parseInt(reserveCode);
 	}
+	
 	 
 
 }

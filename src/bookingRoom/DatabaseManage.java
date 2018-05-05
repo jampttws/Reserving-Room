@@ -32,7 +32,10 @@ public class DatabaseManage {
 			}
 			s = connect.createStatement();
 			
-					} catch (ClassNotFoundException e) {
+			String sql4 = "DELETE FROM reservingData WHERE reserveCode = 125520181";
+			s.execute(sql4);
+			
+		} catch (ClassNotFoundException e) {
 			System.out.print(e.getMessage());
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -42,8 +45,7 @@ public class DatabaseManage {
 		// name varchar(255))";
 		// String sql2 = "CREATE TABLE customer(name varchar(255), id int)";
 //		String sql3 = "CREATE TABLE customer(name varchar(255), id int, number int)";
-//		String sql4 = "DELETE FROM reservingData WHERE reserveCode = 1111111";
-//		s.execute(sql4);
+	
 
 		
 
@@ -77,7 +79,7 @@ public class DatabaseManage {
 	public static List<String> emptyRoom(String roomname) {
 		connect();
 		List<String> list = new ArrayList<String>();
-		String sql = "SELECT roomNumber FROM reservingData WHERE name LIKE '" + roomname + "%'";
+		String sql = "SELECT roomNumber FROM reservingData WHERE roomNumber LIKE '" + roomname + "%'";
 
 		ResultSet rs = null;
 		try {
@@ -96,9 +98,8 @@ public class DatabaseManage {
 		List<String> all = SuggestRoom(roomname);
 
 		for (String s : list) {
-			for (String st : all) {
-				if (s.equals(st))
-					all.remove(s);
+			if(all.contains(s)){
+				all.remove(s);
 			}
 		}
 
@@ -159,10 +160,10 @@ public class DatabaseManage {
 		return bk;
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException{
-  connect();
-//  SuggestRoom("spr");
-//  emptyRoom("dlx");
-//  updateReserving(1111111, "dlx1", "2018-05-05", "2018-05-08", "Jamp");
- }
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		connect();
+		// System.out.print(SuggestRoom("dlx"));
+		// System.out.print(emptyRoom("dlx"));
+//		 updateReserving(5520180, "spr1", "2018-05-20", "2018-05-22", "Mint");
+	}
 }

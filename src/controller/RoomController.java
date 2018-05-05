@@ -132,24 +132,25 @@ public class RoomController extends ViewController{
 		total.addbreakfast();
 	}
 	
-	public static List<String> SprList = null;
-	public static List<String> SutList = null;
-	public static List<String> StdList = null;
-	public static List<String> DlxList = null;
+	private static List<String> SprList = Select("spr", 1);
+	private static List<String> SutList = Select("sut", 1);
+	private static List<String> StdList = Select("std", 1);
+	private static List<String> DlxList = Select("dlx", 1);
 	
 	/** select number of room */
 	public void selectSupeRoom(ActionEvent event) {
 		int numRoom = (int) numSupe.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 2500;
 		total.addCost((cost));
-		total.setNameRoom("Supe");
+		total.addNameRoom("superior");
+		getRoom();
 		if(!canReserve("spr", numRoom)){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setContentText("You cannot reserve this room on this date.");
 			alert.showAndWait();
 		} 
-			SprList = Select("spr", numRoom);
+		SprList = Select("spr", numRoom);
 		
 	}
 	
@@ -158,13 +159,19 @@ public class RoomController extends ViewController{
 		return total.getTypeRoom();
 	}
 	
+	 /** Print Type room in class Confirmcontroller*/
+	 public static List<String> getRoom(){
+		  return total.getNameRoom();
+     }
 	
 	/** select number of room */
 	public void selectStandardRoom(ActionEvent event) {
 		int numRoom = (int) numStandard.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 2000;	
 		total.addCost((cost));
-		if(!canReserve("spr", numRoom)){
+		total.addNameRoom("standard");
+		getRoom();
+		if(!canReserve("std", numRoom)){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setContentText("You cannot reserve this room on this date.");
@@ -181,13 +188,15 @@ public class RoomController extends ViewController{
 		int numRoom = (int) numSuite.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 3500;
 		total.addCost((cost));
-		if(!canReserve("spr", numRoom)){
+		total.addNameRoom("suite");
+		getRoom();
+		if(!canReserve("sut", numRoom)){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setContentText("You cannot reserve this room on this date.");
 			alert.showAndWait();
 		}
-			SutList = Select("sut", numRoom);
+		SutList = Select("sut", numRoom);
 		
 	}
 	
@@ -196,13 +205,15 @@ public class RoomController extends ViewController{
 		int numRoom = (int) numDeluxe.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 3000;
 		total.addCost((cost));
-		if(!canReserve("spr", numRoom)){
+		total.addNameRoom("deluxe");
+		getRoom();
+		if(!canReserve("dlx", numRoom)){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setContentText("You cannot reserve this room on this date.");
 			alert.showAndWait();
 		}
-			DlxList = Select("dlx", numRoom);
+		DlxList = Select("dlx", numRoom);
 		
 	}
 	
@@ -231,7 +242,7 @@ public class RoomController extends ViewController{
 	}
 	
 	public static List<String> Select(String room, int number) {
-		List<String> list = DatabaseManage.SuggestRoom(room);
+		List<String> list = DatabaseManage.emptyRoom(room);
 		List<String> newList = new ArrayList<String>();
 		for(int i = 1; i <= number; i++){
 		   newList.add(list.get(0));
@@ -268,10 +279,15 @@ public class RoomController extends ViewController{
 		}
 	}
 	
-	
+	public static List<String> getSprList(){ return SprList; }
+    public static List<String> getStdList(){ return StdList; }
+	public static List<String> getSutList(){ return SutList; }
+	public static List<String> getDlxList(){ return DlxList; }
 	
 	public static void main(String[] args) throws SQLException{
 		ty();
+		SprList = Select("spr",1);
+		System.out.println(SprList);
 		
 	}
 
