@@ -6,38 +6,48 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="897.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfirmController">
    <children>
-      <Label layoutX="48.0" layoutY="187.0" text="Name :">
+      <Label layoutX="42.0" layoutY="211.0" text="Name :">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="72.0" layoutY="231.0" text="ID :">
+      <Label layoutX="44.0" layoutY="288.0" text="ID/Passpord :">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="59.0" layoutY="279.0" text="Call :">
+      <Label layoutX="42.0" layoutY="359.0" text="Telephone Number:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="name" layoutX="106.0" layoutY="185.0" prefHeight="27.0" prefWidth="369.0" />
-      <TextField fx:id="id" layoutX="106.0" layoutY="228.0" prefHeight="27.0" prefWidth="369.0" />
-      <TextField fx:id="call" layoutX="105.0" layoutY="275.0" prefHeight="27.0" prefWidth="369.0" />
-      <ImageView fitHeight="124.0" fitWidth="899.0" layoutX="-1.0" layoutY="-2.0">
+      <TextField fx:id="name" layoutX="44.0" layoutY="242.0" prefHeight="27.0" prefWidth="427.0" />
+      <TextField fx:id="id" layoutX="44.0" layoutY="319.0" prefHeight="27.0" prefWidth="427.0" />
+      <TextField fx:id="call" layoutX="44.0" layoutY="389.0" prefHeight="27.0" prefWidth="427.0" />
+      <ImageView fitHeight="132.0" fitWidth="899.0" layoutX="-1.0" layoutY="-2.0">
          <image>
             <Image url="@../image/Black_Sand_Color-Volcanic_Beach-1070x423.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="confirmBed" layoutX="532.0" layoutY="247.0" prefHeight="17.0" prefWidth="358.0" text="l" />
-      <Button fx:id="confirm" layoutX="106.0" layoutY="345.0" mnemonicParsing="false" text="Confirm" />
-      <Label fx:id="confirmBreakfast" layoutX="532.0" layoutY="281.0" text="l" />
-      <Label fx:id="bookingDay" layoutX="532.0" layoutY="189.0" text="Label" />
-      <Label fx:id="costRoom" layoutX="532.0" layoutY="313.0" text="Label" />
-      <Label fx:id="nameRoom" layoutX="532.0" layoutY="220.0" prefHeight="17.0" prefWidth="350.0" text="Label" />
+      <Label fx:id="confirmBed" layoutX="552.0" layoutY="247.0" prefHeight="17.0" prefWidth="319.0" text="l" />
+      <Button fx:id="confirm" layoutX="207.0" layoutY="446.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #720707;" text="Confirm" textFill="#f8f3f3">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Label fx:id="confirmBreakfast" layoutX="552.0" layoutY="271.0" prefHeight="17.0" prefWidth="189.0" text="l" />
+      <Label fx:id="bookingDay" layoutX="552.0" layoutY="189.0" text="Label" />
+      <Label fx:id="costRoom" layoutX="552.0" layoutY="302.0" text="Label" />
+      <Label fx:id="nameRoom" layoutX="552.0" layoutY="220.0" prefHeight="17.0" prefWidth="319.0" text="Label" />
+      <Line endY="-150.0" layoutX="511.0" layoutY="307.0" startY="200.0" stroke="#8d8888" strokeMiterLimit="0.0" strokeWidth="5.0" />
+      <Label layoutX="36.0" layoutY="153.0" text="Customer Information" textFill="#83210e">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

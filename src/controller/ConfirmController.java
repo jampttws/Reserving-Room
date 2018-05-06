@@ -60,7 +60,7 @@ public class ConfirmController {
 		confirmBreakfast.setText(String.format("Add Breakfast %d bed = %d Baht",RoomController.countBreakfast(),RoomController.showBreakfast()));
 		confirmBed.setText(String.format("Add extra-bed %d bed = %d Baht" ,RoomController.countExtraBed(),RoomController.showExtraBed()));
 		costRoom.setText(String.format("( %d + %d +%d ) x %d days = %d Baht",result,RoomController.showBreakfast(),RoomController.showExtraBed(),days,sum*days));
-		
+		nameRoom.setText("Including "+ name + " room");
 	}
 	
 	public void confirm(ActionEvent event){

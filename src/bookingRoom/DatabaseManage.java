@@ -51,6 +51,7 @@ public class DatabaseManage {
 
 	}
 
+	
 	public static List<String> SuggestRoom(String room) {
         connect();
 		List<String> code = new ArrayList<String>();
@@ -76,6 +77,7 @@ public class DatabaseManage {
 
 	}
 
+	/**roomcontroll*/
 	public static List<String> emptyRoom(String roomname) {
 		connect();
 		List<String> list = new ArrayList<String>();
@@ -106,6 +108,7 @@ public class DatabaseManage {
 		return all;
 	}
 
+	/**confirm*/
 	public static void collectName(String name, int id, int number) {
         connect();
 		String sql = "INSERT INTO customer VALUES" + String.format("('%s',%d,%d)", name, id, number);
@@ -117,6 +120,7 @@ public class DatabaseManage {
 		}
 	}
 
+	/**confirm*/
 	public static void updateReserving(int reserveCode, String roomCode, String arrive, String depart, String name) {
 		String sql = "INSERT INTO reservingData VALUES"
 				+ String.format("(%d,'%s','%s','%s','%s')", reserveCode, roomCode, arrive, depart, name);
@@ -128,10 +132,32 @@ public class DatabaseManage {
 	}
 	
 	
-	
+	/**manager*/
 	public static List<String> databaseData(String want, String from){
+		connect();
 		List<String> get = new ArrayList<String>();
 		String sql = String.format("SELECT %s FROM %s", want, from);
+		ResultSet rs = null;
+		try {
+			s.execute(sql);
+			rs = s.executeQuery(sql);
+
+            String str = "";
+			while (rs.next()) {
+				str = rs.getString(want);
+				get.add(str);
+			}
+		} catch (SQLException e) {
+			System.out.print(e.getMessage());
+		}
+		return get;
+	}
+	
+	/**manager*/
+	public static List<String> databaseData(String want, String from, String name){
+		connect();
+		List<String> get = new ArrayList<String>();
+		String sql = String.format("SELECT %s FROM %s WHERE name LIKE '", want, from) + name + "%'";
 		ResultSet rs = null;
 		try {
 			s.execute(sql);
@@ -146,6 +172,11 @@ public class DatabaseManage {
 			System.out.print(e.getMessage());
 		}
 		return get;
+	}
+	
+	
+	public static List<Booked> bookedList(String name){
+		return null;	
 	}
 	
 	public static List<Booked> bookedList(){
@@ -163,7 +194,8 @@ public class DatabaseManage {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		connect();
 		// System.out.print(SuggestRoom("dlx"));
-		// System.out.print(emptyRoom("dlx"));
+		 System.out.print(bookedList());
 //		 updateReserving(5520180, "spr1", "2018-05-20", "2018-05-22", "Mint");
+//		System.out.print(peopleReserve("roomNumber", "reservingData", "jamp"));
 	}
 }
