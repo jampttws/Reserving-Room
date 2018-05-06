@@ -2,7 +2,7 @@ package bookingRoom;
 
 import java.time.LocalDate;
 /**
- * Manage check in and check out date to costumer
+ * Manage check in and check out date to customer
  * @author Narisa Singngam
  *
  */
@@ -17,7 +17,7 @@ public class DateManage{
 	}
 	
 	/**
-	 * the total date that costumer reserve room.
+	 * the total date that customer reserve room.
 	 */
 	public int days(){
 		int getDate = checkout.getDayOfYear()-checkin.getDayOfYear();

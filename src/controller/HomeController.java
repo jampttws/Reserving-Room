@@ -40,6 +40,8 @@ public class HomeController extends ViewController {
 	Button signup;
 	@FXML
 	Label totalDate;
+	@FXML
+	Button manager;
 	
 	private PageController open = super.getController();
 	private LocalDate now;
@@ -54,6 +56,7 @@ public class HomeController extends ViewController {
 		signup.setOnAction(this::showSignup);
 		arrive.setOnAction(this::warnDate);
 		departure.setOnAction(this::warnDate);
+		manager.setOnAction(this::showManager);
 	}
 	
 	/** collect all data in this fxml */
@@ -88,11 +91,14 @@ public class HomeController extends ViewController {
 		handleDate();
 	}
 	
+	public void showManager(ActionEvent event){
+		open.openPage("Manager.fxml");
+	}
+	
 	/** Show in another fxml. */
 	public void showRoom(ActionEvent event) {
 		collect();
 		open.openPage("SelectRoom.fxml");
-		
 	}
 	
 	/** Show in another fxml. */

@@ -137,64 +137,48 @@ public class RoomController extends ViewController{
 	private static List<String> StdList = Select("std", 1);
 	private static List<String> DlxList = Select("dlx", 1);
 	
+	/** Show alert */
+	public void alert(){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setContentText("You cannot reserve this room on this date.");
+		alert.showAndWait();
+	}
+	
 	/** select number of room */
 	public void selectSupeRoom(ActionEvent event) {
 		int numRoom = (int) numSupe.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 2500;
-		total.addCost((cost));
+		total.addPrice((cost));
 		total.addNameRoom("superior");
-		getRoom();
 		if(!canReserve("spr", numRoom)){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setContentText("You cannot reserve this room on this date.");
-			alert.showAndWait();
+			alert();
 		} 
 		SprList = Select("spr", numRoom);
 		
 	}
 	
-	/** Print Room in class Confirmcontroller*/
-	public static List<Integer> printRoom(){
-		return total.getTypeRoom();
-	}
-	
-	 /** Print Type room in class Confirmcontroller*/
-	 public static List<String> getRoom(){
-		  return total.getNameRoom();
-     }
 	
 	/** select number of room */
 	public void selectStandardRoom(ActionEvent event) {
 		int numRoom = (int) numStandard.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 2000;	
-		total.addCost((cost));
+		total.addPrice((cost));
 		total.addNameRoom("standard");
-		getRoom();
 		if(!canReserve("std", numRoom)){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setContentText("You cannot reserve this room on this date.");
-			alert.showAndWait();
+			alert();
 		} 
 	    StdList = Select("std", numRoom);
-		
 	}
-	
-
 	
 	/** select number of room */
 	public void selectSuiteRoom(ActionEvent event){
 		int numRoom = (int) numSuite.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 3500;
-		total.addCost((cost));
+		total.addPrice((cost));
 		total.addNameRoom("suite");
-		getRoom();
 		if(!canReserve("sut", numRoom)){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setContentText("You cannot reserve this room on this date.");
-			alert.showAndWait();
+			alert();
 		}
 		SutList = Select("sut", numRoom);
 		
@@ -204,41 +188,18 @@ public class RoomController extends ViewController{
 	public void selectDeluxRoom(ActionEvent event) {
 		int numRoom = (int) numDeluxe.getSelectionModel().getSelectedItem();
 		int cost = numRoom * 3000;
-		total.addCost((cost));
+		total.addPrice((cost));
 		total.addNameRoom("deluxe");
-		getRoom();
 		if(!canReserve("dlx", numRoom)){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setContentText("You cannot reserve this room on this date.");
-			alert.showAndWait();
+			alert();
 		}
 		DlxList = Select("dlx", numRoom);
 		
 	}
 	
-	/** Sum all breakfast*/
-	public static int showBreakfast(){
-		int totalfood = 0;
-		for (int i = 0; i < total.getBreakfastList().size(); i++) totalfood += total.getBreakfastList().get(i);
-		return totalfood;
-	}
-	public static int countBreakfast(){
-		return total.getBreakfastList().size();
-	}
 	/** Add extra bed */
 	public void addExtraBedButton(ActionEvent event){
 		total.addBed();
-	}
-	/** Sum all ExtraBed*/
-	public static int showExtraBed(){
-		int totalBed = 0;
-		for (int i = 0; i < total.getBedList().size(); i++) totalBed += total.getBedList().get(i);
-		return totalBed;
-	}
-	
-	public static int countExtraBed(){
-		return total.getBedList().size(); 
 	}
 	
 	public static List<String> Select(String room, int number) {
@@ -270,26 +231,8 @@ public class RoomController extends ViewController{
 		return true;
 	}
 	
-	public static void ty() throws SQLException{
-//		System.out.println(HomeController.readfile().get(0));
-		if(canReserve("dlx1",1)){
-			System.out.println("123");
-		}else{
-			System.out.println("ควย");
-		}
-	}
-	
 	public static List<String> getSprList(){ return SprList; }
     public static List<String> getStdList(){ return StdList; }
 	public static List<String> getSutList(){ return SutList; }
 	public static List<String> getDlxList(){ return DlxList; }
-	
-	public static void main(String[] args) throws SQLException{
-		ty();
-		SprList = Select("spr",1);
-		System.out.println(SprList);
-		
 	}
-
-	
-}
