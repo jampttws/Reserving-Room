@@ -8,22 +8,22 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManagerController">
    <children>
       <ImageView fitHeight="518.0" fitWidth="715.0" pickOnBounds="true">
          <image>
             <Image url="@../image/8D2A2E54-E694-4FB7-A549-3F185AF68640.jpg" />
          </image>
       </ImageView>
-      <TableView layoutX="30.0" layoutY="160.0" opacity="0.9" prefHeight="325.0" prefWidth="655.0">
+      <TableView fx:id="reserveData" layoutX="30.0" layoutY="160.0" opacity="0.9" prefHeight="325.0" prefWidth="655.0">
         <columns>
-          <TableColumn prefWidth="156.0" text="name" />
-          <TableColumn prefWidth="150.0" text="room code" />
-            <TableColumn prefWidth="172.0" text=" arrive date" />
-            <TableColumn prefWidth="176.0" text="depart date" />
+          <TableColumn fx:id="name" prefWidth="156.0" text="name" />
+          <TableColumn fx:id="roomCode" prefWidth="150.0" text="room code" />
+            <TableColumn fx:id="arrive" prefWidth="172.0" text=" arrive date" />
+            <TableColumn fx:id="depart" prefWidth="176.0" text="depart date" />
         </columns>
       </TableView>
       <Label layoutX="264.0" layoutY="29.0" text="Reserved List" textFill="#320303">
@@ -31,21 +31,33 @@
             <Font name="Yuppy SC Regular" size="29.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="114.0" text="Customer name:">
+      <Label layoutX="30.0" layoutY="114.0" text="Customer name:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="191.0" layoutY="112.0" prefHeight="27.0" prefWidth="198.0" />
-      <Button layoutX="408.0" layoutY="108.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" style="-fx-background-color: #7c7c7c#7c7c7c;" text="Search" textFill="WHITE">
+      <TextField fx:id="getName" layoutX="183.0" layoutY="112.0" prefHeight="27.0" prefWidth="163.0" />
+      <Button fx:id="search" layoutX="358.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" style="-fx-background-color: #7c7c7c#7c7c7c;" text="Search" textFill="WHITE">
          <font>
             <Font name="Helvetica" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="518.0" layoutY="107.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="140.0" style="-fx-background-color: #720707;" text="Show all" textFill="WHITE">
+      <Button fx:id="showAll" layoutX="545.0" layoutY="31.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="140.0" style="-fx-background-color: #720707;" text="Show all" textFill="WHITE">
          <font>
             <Font name="Yuppy TC Regular" size="18.0" />
          </font>
       </Button>
+      <TextField fx:id="getRoom" layoutX="463.0" layoutY="112.0" prefHeight="27.0" prefWidth="111.0" text="room code" />
+      <Label layoutX="584.0" layoutY="114.0" text="&gt;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="remove" layoutX="610.0" layoutY="111.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="75.0" text="remove">
+         <font>
+            <Font name="Helvetica" size="15.0" />
+         </font>
+      </Button>
+      <Line layoutX="452.0" layoutY="108.0" startY="35.0" stroke="#6f6d6d" strokeMiterLimit="0.0" strokeWidth="3.0" />
    </children>
 </Pane>

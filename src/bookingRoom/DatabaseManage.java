@@ -175,8 +175,16 @@ public class DatabaseManage {
 	}
 	
 	
-	public static List<Booked> bookedList(String name){
-		return null;	
+	public static List<Booked> bookedList(String Name){
+		List<Booked> bk = new ArrayList<Booked>();
+		List<String> roomCode = databaseData("roomNumber", "reservingData", Name);
+		List<String> arrive = databaseData("arrive", "reservingData", Name);
+	    List<String> depart = databaseData("depart", "reservingData", Name);
+	    List<String> name = databaseData("name", "reservingData", Name);
+		for(int i = 0; i < name.size(); i++){
+			bk.add(new Booked(roomCode.get(i), arrive.get(i), depart.get(i), name.get(i)));
+		}
+		return bk;
 	}
 	
 	public static List<Booked> bookedList(){
@@ -190,12 +198,23 @@ public class DatabaseManage {
 		}
 		return bk;
 	}
+	
+	public static void remove(String from, String where, String want){
+		connect();
+		String sql = String.format("DELETE FROM %s WHERE %s = '%s'", from, where, want);
+		try {
+			s.execute(sql);
+		} catch (SQLException e) {
+			System.out.print(e.getMessage());
+		}
+	}
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		connect();
 		// System.out.print(SuggestRoom("dlx"));
-		 System.out.print(bookedList());
+//		 System.out.print(bookedList());
 //		 updateReserving(5520180, "spr1", "2018-05-20", "2018-05-22", "Mint");
 //		System.out.print(peopleReserve("roomNumber", "reservingData", "jamp"));
+//		 remove("customer", "name", "l");
 	}
 }
