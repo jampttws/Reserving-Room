@@ -131,11 +131,7 @@ public class RoomController extends ViewController{
 	public void addBreakfast(ActionEvent event){
 		total.addbreakfast();
 	}
-	
-	private static List<String> SprList = Select("spr", 1);
-	private static List<String> SutList = Select("sut", 1);
-	private static List<String> StdList = Select("std", 1);
-	private static List<String> DlxList = Select("dlx", 1);
+
 	
 	/** Show alert */
 	public void alert(){
@@ -144,6 +140,11 @@ public class RoomController extends ViewController{
 		alert.setContentText("You cannot reserve this room on this date.");
 		alert.showAndWait();
 	}
+	
+	public static List<String> SprList = Select("spr", 1);
+	public static List<String> SutList = Select("sut", 1);
+	public static List<String> StdList = Select("std", 1);
+	public static List<String> DlxList = Select("dlx", 1);
 	
 	/** select number of room */
 	public void selectSupeRoom(ActionEvent event) {
@@ -231,8 +232,4 @@ public class RoomController extends ViewController{
 		return true;
 	}
 	
-	public static List<String> getSprList(){ return SprList; }
-    public static List<String> getStdList(){ return StdList; }
-	public static List<String> getSutList(){ return SutList; }
-	public static List<String> getDlxList(){ return DlxList; }
 	}

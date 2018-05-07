@@ -58,8 +58,5 @@ public class BookingRequest {
 		}
 	}
 	
-	public static void main(String[] args){
-//		System.out.println(BookingRequest.getInstance().getListFile().get(0));
-	}
 
 }

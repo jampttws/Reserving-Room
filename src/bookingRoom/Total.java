@@ -28,7 +28,6 @@ public class Total {
 	}
 
 	public List<String> getNameRoom() {
-
 		return nameRoom;
 	}
 
@@ -37,6 +36,7 @@ public class Total {
 			nameRoom.add(name);
 		}
 	}
+	
 
 	public static Total getinstance() {
 		if (instance == null) {
@@ -49,9 +49,18 @@ public class Total {
 		costRoom.add(room);
 	}
 
-	public List<Integer> getRoomprice() {
-		return costRoom;
+	/** 
+	 * 
+	 * @return Price of room.
+	 */
+	public int getRoomPrice(){
+		int result = 0;
+		for (int i = 0; i < costRoom.size(); i++) {
+			result += costRoom.get(i);
+		}
+		return result;
 	}
+
 
 	public void addbreakfast() {
 		breakfastList.add(300);

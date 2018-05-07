@@ -6,6 +6,7 @@ import bookingRoom.ViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class SignupController extends ViewController{
@@ -13,9 +14,9 @@ public class SignupController extends ViewController{
 	@FXML
 	TextField name;
 	@FXML
-	TextField password;
+	PasswordField password;
 	@FXML
-    TextField confirmpass;
+	PasswordField confirmpass;
 	@FXML
 	Button signup;
 	
@@ -30,7 +31,7 @@ public class SignupController extends ViewController{
 		if(password.getText().equals(confirmpass.getText())){
 			User.addUser(name.getText(), password.getText());
 		}
-		open.openPage("Signin.fxml");
+		open.nextPage(event,"Signin.fxml");
 	}
 
 

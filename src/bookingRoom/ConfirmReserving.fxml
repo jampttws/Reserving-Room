@@ -49,5 +49,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <Label fx:id="discount" layoutX="552.0" layoutY="324.0" text="Label" />
    </children>
 </Pane>

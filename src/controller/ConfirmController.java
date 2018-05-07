@@ -36,7 +36,7 @@ public class ConfirmController {
 	@FXML
 	Label nameRoom;
 	@FXML
-	TextArea typeRoom;
+	Label discount;
 
 	private static String day = BookingRequest.getInstance().getListFile().get(2);
 	private static Total total = Total.getinstance();
@@ -45,31 +45,32 @@ public class ConfirmController {
 
 	@FXML
 	public void initialize() {
-		totalCostRoom();
+		handleCostRoom();
 		confirm.setOnAction(this::confirm);
 	}
 
-	public void totalCostRoom() {
-		int result = 0;
+	public void handleCostRoom() {
 		int days = Integer.parseInt(day);
 		String name = "";
 
-		for (int i = 0; i < total.getRoomprice().size(); i++) {
-			result += total.getRoomprice().get(i);
-		}
 		for (String n : total.getNameRoom()) {
 			name += " " + n + " ";
 		}
-		int sum = result + total.showBreakfast() + total.showExtraBed();
+		int sum = total.getRoomPrice() + total.showBreakfast() + total.showExtraBed();
 		bookingDay.setText(String.format("You reserve %s days", day));
 		confirmBreakfast.setText(
 				String.format("Add Breakfast %d bed = %d Baht", total.countBreakfast(), total.showBreakfast()));
 		confirmBed
 				.setText(String.format("Add extra-bed %d bed = %d Baht", total.countExtraBed(), total.showExtraBed()));
-		costRoom.setText(String.format("( %d + %d +%d ) x %d days = %d Baht", result, total.showBreakfast(),
-				total.showExtraBed(), days, sum * days));
+		costRoom.setText(String.format("( %d + %d +%d ) x %d days = %d Baht", total.getRoomPrice(),
+				total.showBreakfast(), total.showExtraBed(), days, sum * days));
 		nameRoom.setText("Including " + name + " room");
+
 	}
+	
+//	public void handleDiscount(){
+//		if(S)
+//	}
 
 	public void confirm(ActionEvent event) {
 		for (int i = 0; i < total.getNameRoom().size(); i++) {
@@ -85,25 +86,25 @@ public class ConfirmController {
 		String Name = name.getText().trim();
 		switch (nameRoom) {
 		case ("suite"):
-			for (String s : RoomController.getSutList()) {
+			for (String s : RoomController.SutList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
 				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
 			}
 			break;
 		case ("superior"):
-			for (String s : RoomController.getSprList()) {
+			for (String s : RoomController.SprList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
 				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
 			}
 			break;
 		case ("standard"):
-			for (String s : RoomController.getStdList()) {
+			for (String s : RoomController.StdList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
 				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
 			}
 			break;
 		case ("deluxe"):
-			for (String s : RoomController.getDlxList()) {
+			for (String s : RoomController.DlxList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
 				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
 			}
