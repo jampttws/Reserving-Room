@@ -66,14 +66,10 @@ public class HomeController extends ViewController {
 			children.setText("0");
 		int numAdult = Integer.parseInt(adult.getText().trim());
 		int numChildren = Integer.parseInt(children.getText().trim());
-		book.add(date.getCheckin(), date.getCheckout(), date.days(), numAdult, numChildren);
+		book.addData(date.getCheckin(), date.getCheckout(), date.days(), numAdult, numChildren);
 
 	}
 
-	/** Read booking request of costumer */
-	public static List<String> readfile() {
-		return book.read();
-	}
 
 	/** Show date that costumer can reserve. */
 	public void handleDate() {

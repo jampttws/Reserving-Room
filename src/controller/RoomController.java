@@ -80,6 +80,8 @@ public class RoomController extends ViewController{
 	private static Total total = Total.getinstance();
 	private BookingRequest bk = BookingRequest.getInstance();
 	ObservableList<Integer> room = FXCollections.observableArrayList(1,2,3,4,5);
+	public String arrive = bk.getListFile().get(0);
+	public String depart = bk.getListFile().get(1);
 	
 	@FXML
 	public void initialize(){
@@ -117,16 +119,22 @@ public class RoomController extends ViewController{
 	public void showComfirmPage(ActionEvent event){
 		open.openPage("ConfirmReserving.fxml");	
 	}
+	
+	
 	/** Show the list of reserving day */
-	public void showData(){
-		List<String> readfile = HomeController.readfile();
-		costumerData.setText(String.format("You reserve %s days including adult %s children %s"
-				,readfile.get(2),readfile.get(3),readfile.get(4)));
-		deluxe.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("dlx").size()));
-		suite.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("sut").size()));
-		superior.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("spr").size()));
-		standard.setText(String.format("%s rooms avilable",DatabaseManage.emptyRoom("std").size()));
-	}
+	 public void showData(){
+	  List<String> readfile = bk.getListFile();
+	  costumerData.setText(String.format("You reserve %s days including adult %s children %s"
+	    ,readfile.get(2),readfile.get(3),readfile.get(4)));
+	  deluxe.setText(String.format("%s rooms avilable", showEmpty("dlx").size()));
+	  suite.setText(String.format("%s rooms avilable", showEmpty("sut").size()));
+	  superior.setText(String.format("%s rooms avilable", showEmpty("spr").size()));
+	  standard.setText(String.format("%s rooms avilable", showEmpty("std").size()));
+	 }
+
+	 public List<String> showEmpty(String room){
+	  return DatabaseManage.emptyRoom(room, arrive, depart);
+	 }
 
 	/** Add breakfast */
 	public void addBreakfast(ActionEvent event){
@@ -215,9 +223,7 @@ public class RoomController extends ViewController{
 	}
 	
 	
-	public static boolean canReserve(String room, int number){
-		String arrive = BookingRequest.getInstance().getListFile().get(0);
-		String depart = BookingRequest.getInstance().getListFile().get(1);
+	public boolean canReserve(String room, int number){
 		for(String str : Select(room, number)){
 			for(Booked b : DatabaseManage.bookedList()){
 				if(str.equals(b.getRoomCode())){

@@ -36,7 +36,7 @@
          </image>
       </ImageView>
       <Label fx:id="confirmBed" layoutX="552.0" layoutY="247.0" prefHeight="17.0" prefWidth="319.0" text="l" />
-      <Button fx:id="confirm" layoutX="207.0" layoutY="446.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #720707;" text="Confirm" textFill="#908585">
+      <Button fx:id="confirm" layoutX="207.0" layoutY="446.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #720707;" text="Confirm" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
