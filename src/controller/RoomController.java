@@ -78,6 +78,7 @@ public class RoomController extends ViewController{
 	
 	private PageController open = super.getController();
 	private static Total total = Total.getinstance();
+	private BookingRequest bk = BookingRequest.getInstance();
 	ObservableList<Integer> room = FXCollections.observableArrayList(1,2,3,4,5);
 	
 	@FXML
@@ -215,8 +216,8 @@ public class RoomController extends ViewController{
 	
 	
 	public static boolean canReserve(String room, int number){
-		String arrive = HomeController.readfile().get(0);
-		String depart = HomeController.readfile().get(1);
+		String arrive = BookingRequest.getInstance().getListFile().get(0);
+		String depart = BookingRequest.getInstance().getListFile().get(1);
 		for(String str : Select(room, number)){
 			for(Booked b : DatabaseManage.bookedList()){
 				if(str.equals(b.getRoomCode())){

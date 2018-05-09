@@ -17,24 +17,21 @@ public class DateManage{
 	}
 	
 	/**
-	 * the total date that customer reserve room.
+	 * The total date that customer reserve room.
 	 */
 	public int days(){
 		int getDate = checkout.getDayOfYear()-checkin.getDayOfYear();
 		return getDate;
 	}
 	
+	/** Get check in date */
 	public LocalDate getCheckin() {
 		return checkin;
 	}
-	public void setCheckin(LocalDate date1) {
-		this.checkin = date1;
-	}
+	
+	/** Get check out date */
 	public LocalDate getCheckout() {
 		return checkout;
-	}
-	public void setCheckout(LocalDate date2) {
-		this.checkout = date2;
 	}
 	
 	

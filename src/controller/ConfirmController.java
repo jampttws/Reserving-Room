@@ -48,8 +48,8 @@ public class ConfirmController {
 
 	private static String day = BookingRequest.getInstance().getListFile().get(2);
 	private static Total total = Total.getinstance();
-	private String arrive = HomeController.readfile().get(0);
-	private String depart = HomeController.readfile().get(1);
+	private String arrive = BookingRequest.getInstance().getListFile().get(0);
+	private String depart = BookingRequest.getInstance().getListFile().get(1);
 	private final String ACCESS_KEY = "72e8908d7c8a8c707e5b8e2c8eb2f102";
 	public final String BASE_URL = "http://apilayer.net/api/live?access_key=";
 	private CurrencyRate currency;
@@ -123,6 +123,7 @@ public class ConfirmController {
 		return data;
 
 	}
+	
 
 	public void confirm(ActionEvent event) {
 		for (int i = 0; i < total.getNameRoom().size(); i++) {

@@ -103,7 +103,7 @@ public class HomeController extends ViewController {
 	}
 
 	public void showManager(ActionEvent event) {
-		open.openPage("Manager.fxml");
+		open.openPage("ManagerLogin.fxml");
 	}
 
 	/** Show in another fxml. */
