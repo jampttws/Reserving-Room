@@ -36,7 +36,7 @@
          </image>
       </ImageView>
       <Label fx:id="confirmBed" layoutX="552.0" layoutY="247.0" prefHeight="17.0" prefWidth="319.0" text="l" />
-      <Button fx:id="confirm" layoutX="207.0" layoutY="446.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #720707;" text="Confirm" textFill="#f8f3f3">
+      <Button fx:id="confirm" layoutX="207.0" layoutY="446.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #720707;" text="Confirm" textFill="#908585">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
@@ -50,8 +50,8 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="totalPrice" layoutX="547.0" layoutY="361.0" prefHeight="17.0" prefWidth="222.0" text="label" />
-      <ComboBox fx:id="comboBox" layoutX="801.0" layoutY="356.0" prefHeight="27.0" prefWidth="82.0" />
+      <Label fx:id="totalPrice" layoutX="547.0" layoutY="361.0" prefHeight="17.0" prefWidth="214.0" text="Total" />
+      <ComboBox fx:id="comboBox" layoutX="766.0" layoutY="356.0" prefHeight="27.0" prefWidth="117.0" />
       <Label fx:id="discount" layoutX="552.0" layoutY="324.0" text="Label" />
    </children>
 </Pane>

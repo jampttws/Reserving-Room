@@ -45,7 +45,7 @@ public class HomeController extends ViewController {
 	private PageController open = super.getController();
 	private LocalDate now;
 	private DateManage date;
-	private Alert alert;
+	private Alert alert = new Alert(AlertType.WARNING);
 	private static BookingRequest book = BookingRequest.getInstance();
 
 	@FXML
@@ -86,7 +86,6 @@ public class HomeController extends ViewController {
 
 	/** Alert reserving date */
 	public void alertDate() {
-		alert = new Alert(AlertType.WARNING);
 		alert.setHeaderText("Please check your reserve date again");
 		alert.showAndWait();
 	}
@@ -108,8 +107,14 @@ public class HomeController extends ViewController {
 
 	/** Show in another fxml. */
 	public void showRoom(ActionEvent event) {
-		collect();
-		open.openPage("SelectRoom.fxml");
+		if (adult.getText().equals("") && children.getText().equals("")) {
+			alert.setHeaderText("How many guests?");
+			alert.showAndWait();
+		} else {
+			collect();
+			open.openPage("SelectRoom.fxml");
+		}
+
 	}
 
 	/** Show in another fxml. */

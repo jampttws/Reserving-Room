@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum CurrencyRate {
-	USD,THB,EUR,HKD,JPY,CNY;
+	SELECT,USD,THB,EUR,HKD,JPY,CNY;
 
 	public double matchCurrency(String data, CurrencyRate curr) {
 
