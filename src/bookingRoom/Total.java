@@ -18,6 +18,13 @@ public class Total {
 		costRoom = new ArrayList<>();
 		nameRoom = new ArrayList<>();
 	}
+	
+	public static Total getinstance() {
+		if (instance == null) {
+			instance = new Total();
+		}
+		return instance;
+	}
 
 	public boolean roomName(String name) {
 		for (String nr : nameRoom) {
@@ -37,13 +44,6 @@ public class Total {
 		}
 	}
 	
-
-	public static Total getinstance() {
-		if (instance == null) {
-			instance = new Total();
-		}
-		return instance;
-	}
 
 	public void addPrice(int room) {
 		costRoom.add(room);
