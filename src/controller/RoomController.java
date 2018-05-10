@@ -76,6 +76,7 @@ public class RoomController extends ViewController{
 	@FXML
 	Button selectStandard;
 	
+	
 	private PageController open = super.getController();
 	private static Total total = Total.getinstance();
 	private BookingRequest bk = BookingRequest.getInstance();

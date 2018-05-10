@@ -34,6 +34,10 @@ public class DatabaseManage {
 	public static final String COLUMN_NUMBER = "number";
 
 	public static final String TABLE_ROOM = "room";
+	
+	//user table
+	public static final String TABLE_USER = "user";
+	public static final String COLUMN_PASS = "password";
 
 	public static void connect() {
 
@@ -47,6 +51,7 @@ public class DatabaseManage {
 				System.out.println("Database Connect Failed.");
 			}
 			s = connect.createStatement();
+			
 
 		} catch (ClassNotFoundException e) {
 			System.out.print(e.getMessage());
@@ -65,6 +70,7 @@ public class DatabaseManage {
 
 	}
 
+	/**get data*/
 	public static List<String> get(String want, String sql) {
 		connect();
 		List<String> code = new ArrayList<String>();
@@ -84,12 +90,14 @@ public class DatabaseManage {
 		return code;
 	}
 
+	/**room controller*/
 	public static List<String> SuggestRoom(String room) {
 		String sql = "SELECT " + COLUMN_ROOM + " FROM " + TABLE_ROOM + " WHERE " + COLUMN_ROOM + " LIKE '" + room
 				+ "%'";
 		return get(COLUMN_ROOM, sql);
 	}
 
+	/**room controller*/
 	public static List<String> emptyRoom(String roomname) {
 		String sql = "SELECT " + COLUMN_ROOM + " FROM " + TABLE_RESERVE + " WHERE " + COLUMN_ROOM + " LIKE '" + roomname
 				+ "%'";
@@ -106,7 +114,6 @@ public class DatabaseManage {
 
 	/** roomcontroll */
 	public static List<String> emptyRoom(String roomname, String arrive, String depart) {
-		// connect();
 		String sql = "SELECT " + COLUMN_ROOM + " FROM " + TABLE_RESERVE + " WHERE " + COLUMN_ROOM + " LIKE '" + roomname
 				+ "%'" + " AND " + COLUMN_ARRIVE + " = '" + arrive + "' AND " + COLUMN_DEPART + " = '" + depart + "'";
 
@@ -135,6 +142,7 @@ public class DatabaseManage {
 
 	/** confirm */
 	public static void updateReserving(int reserveCode, String roomCode, String arrive, String depart, String name) {
+		connect();
 		String sql = "INSERT INTO " + TABLE_RESERVE + " VALUES"
 				+ String.format("(%d,'%s','%s','%s','%s')", reserveCode, roomCode, arrive, depart, name);
 		try {
@@ -146,7 +154,6 @@ public class DatabaseManage {
 
 	/** manager */
 	public static List<String> databaseData(String want, String from) {
-		connect();
 		String sql = String.format("SELECT %s FROM %s", want, from);
 		return get(want, sql);
 	}
@@ -157,6 +164,7 @@ public class DatabaseManage {
 		return get(want, sql);
 	}
 
+	/**room controller*/
 	public static List<Booked> bookedList(String Name) {
 		List<Booked> bk = new ArrayList<Booked>();
 		List<String> roomCode = databaseData(COLUMN_ROOM, TABLE_RESERVE, Name);
@@ -169,6 +177,7 @@ public class DatabaseManage {
 		return bk;
 	}
 
+	/**room controller*/
 	public static List<Booked> bookedList() {
 		List<Booked> bk = new ArrayList<Booked>();
 		List<String> roomCode = databaseData(COLUMN_ROOM, TABLE_RESERVE);
@@ -181,6 +190,7 @@ public class DatabaseManage {
 		return bk;
 	}
 
+	/**manager*/
 	public static void remove(String from, String where, String want) {
 		connect();
 		String sql = String.format("DELETE FROM %s WHERE %s = '%s'", from, where, want);
@@ -190,4 +200,34 @@ public class DatabaseManage {
 			System.out.print(e.getMessage());
 		}
 	}
+	
+	/**signin*/
+	public static void addUser(String name, String pass){
+		connect();
+		String sql = "INSERT INTO " + TABLE_USER + " VALUES" + String.format("('%s','%s')", name, pass);
+		try {
+			s.execute(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**signin*/
+	public static List<User> getUser(){
+		List<User> user = new ArrayList<User>();
+		List<String> name = databaseData(COLUMN_NAME, TABLE_USER);
+		List<String> pass = databaseData(COLUMN_PASS, TABLE_USER);
+		for (int i = 0; i < name.size(); i++) {
+			user.add(new User(name.get(i), pass.get(i)));
+		}
+		return user;
+	}
+	
+	
+	public static void main(String[] args){
+		connect();
+		addUser("jamp","jamp");
+	}
+	
 }

@@ -1,24 +1,19 @@
 package bookingRoom;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Scanner;
 
 public class User {
 	
 	private String name;
 	private String password;
 	
+	private static DatabaseManage db = new DatabaseManage();
+	
 	public User(String name, String password){
 		this.name = name;
-		this.password = password;
+		this.password = setPasscode(password);
 	}
 	
 	public String getName(){
@@ -29,45 +24,42 @@ public class User {
 		return password;
 	}
 	
-	public static void addUser(String name, String password){
-		FileOutputStream os;
-		try {
-			 os = new FileOutputStream("src/bookingRoom/user.txt",true);
-	            
-	            os.write(name.getBytes());
-	            os.write(";".getBytes());
-	            os.write(password.getBytes());
-	            os.write(";".getBytes());
-	            os.write("\n".getBytes());
-	            os.close();
-
-		} catch (IOException e) {
-			System.out.println("file not found");
-		}
-	}
 	
-	public static List<User> list = new ArrayList<User>();
+	public static String setPasscode(String passcode){
+		String collectPass = "";
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] detal = digest.digest(passcode.getBytes());
+            StringBuffer stringBuffer = new StringBuffer();
+            for (byte bytes : detal) {
+                  stringBuffer.append(String.format("%02x", bytes & 0xff));
+            
+            }
+            collectPass = stringBuffer.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+        	System.out.print(e.getMessage());
+        }
+		return collectPass;
+    }
+	
+	public static void addUser(String name, String password){
+         db.addUser(name, setPasscode(password));
+	}
 	
 	public static List<User> getMember(){
-
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new FileReader("src/bookingRoom/user.txt"));
-			
-			while (br.ready()){
-				String phrase = br.readLine().trim();
-				String[] user = phrase.split(";");
-				list.add(new User(user[0], user[1]));
-			}
-		} catch (IOException e) {
-			System.out.println("file not found");
-		}
-		return list;
+		return db.getUser();
 	}
 	
-	public static List<User> getUser(){
-		return list;
+	@Override
+	public boolean equals(Object obj){
+		if (obj == null) return false;
+	    if (obj.getClass() != this.getClass()) return false;
+	    User other = (User)obj;
+		return this.getName() == other.getName() && this.getPassword().equals(other.getPassword());
 	}
+	
+
 
 	
 

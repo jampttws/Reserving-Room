@@ -165,7 +165,6 @@ public class ConfirmController {
 		default:
 			break;
 		}
-		DatabaseManage.collectName(Name, Integer.parseInt(id.getText().trim()),
-				Integer.parseInt(call.getText().trim()));
+		DatabaseManage.collectName(Name, Long.parseLong(id.getText().trim()), Long.parseLong(call.getText().trim()));
 	}
 }

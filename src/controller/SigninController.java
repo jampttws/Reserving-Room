@@ -1,4 +1,5 @@
 package controller;
+
 import bookingRoom.PageController;
 import bookingRoom.User;
 import bookingRoom.ViewController;
@@ -38,17 +39,16 @@ public class SigninController extends ViewController{
 	/** 
 	 * @return true if user name and password correct 
 	 * */
-	public static boolean signIn(User getUser){
+	public static void signIn(User user){
 		for(User u : User.getMember()){
-			if(u.getName().equals(getUser.getName())&&u.getPassword().equals(getUser.getPassword())){
+			if(u.equals(user)){
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Member");
-				alert.setContentText(String.format("User: %s", u.getName()));
+				alert.setContentText(String.format("User: %s", user.getName()));
 				alert.showAndWait();
-				return true;
 			}
 		}
-		return false;
+
 	}
 	
 	public void showSignUp(ActionEvent event){
