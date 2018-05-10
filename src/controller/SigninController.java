@@ -32,29 +32,31 @@ public class SigninController extends ViewController{
 	
 	/** Show when login the user name and password */
 	public void signInHandle(ActionEvent event){
-		User get = new User(name.getText(), password.getText());
-		signIn(get);
+		User get = new User(name.getText(), User.setPasscode(password.getText()));
+		if(signIn(get)){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Member");
+			alert.setContentText(String.format("User: %s", get.getName()));
+			alert.showAndWait();
+		}
 	}
 	
 	/** 
 	 * @return true if user name and password correct 
 	 * */
-	public static void signIn(User user){
+	public static boolean signIn(User user){
 		for(User u : User.getMember()){
-			if(u.equals(user)){
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Member");
-				alert.setContentText(String.format("User: %s", user.getName()));
-				alert.showAndWait();
+			if(user.equals(u)){
+				return true;
 			}
 		}
-
+		return false;
 	}
 	
 	public void showSignUp(ActionEvent event){
 			open.nextPage(event,"SignUp.fxml");
 	}
-	
+
 	
 	
 
