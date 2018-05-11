@@ -11,6 +11,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Controller for Signin UI that use to sign in. 
+ * @author Narisa and Tanasorn
+ *
+ */
 public class SigninController extends ViewController{
 	
 	@FXML

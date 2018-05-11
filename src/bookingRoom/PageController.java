@@ -10,6 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Page controller.
+ * @author Narisa and Tanasorn
+ *
+ */
 public class PageController {
 	private Stage primaryStage;
 	
@@ -17,6 +22,7 @@ public class PageController {
 		this.primaryStage = stage;
 	}
 
+	/**Open new page.*/
 	public void openPage(String fxmlname) {
 		URL url = getClass().getResource(fxmlname);
 		FXMLLoader loader = new FXMLLoader(url);
@@ -29,12 +35,14 @@ public class PageController {
 			}
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch (IOException e) {
 			System.out.println("Can't connect fxml");
 		}	
 	}
 	
+	/**Open next page.*/
 	public void nextPage(ActionEvent event,String namefile) {
 		URL url = getClass().getResource(namefile);
 		FXMLLoader loader = new FXMLLoader(url);
@@ -43,7 +51,9 @@ public class PageController {
 			root = loader.load();
 			Scene scene = new Scene(root);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setResizable(false);
 			stage.setScene(scene);
+			
 			stage.show();
 		} catch (IOException e) {
 			System.out.println("Can't connect fxml");

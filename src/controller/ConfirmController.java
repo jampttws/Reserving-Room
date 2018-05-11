@@ -20,12 +20,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for Confirming UI that show receipt and enter confirmation.
+ * @author Narisa and Tanasorn
+ *
+ */
 public class ConfirmController {
 
 	@FXML
 	TextField name;
 	@FXML
-	TextField id;
+	TextField email;
 	@FXML
 	TextField call;
 	@FXML
@@ -47,16 +52,23 @@ public class ConfirmController {
 	@FXML
 	Label totalPrice;
 
-	private static String day = BookingRequest.getInstance().getListFile().get(2);
+	private static DatabaseManage db = DatabaseManage.getInstance();
+	
+	private static BookingRequest br = BookingRequest.getInstance();
+	private String day = br.getListFile().get(2);
+	private String arrive = br.getListFile().get(0);
+	private String depart = br.getListFile().get(1);
+	
 	private static Total total = Total.getinstance();
-	private static ConfigFileManager cf = ConfigFileManager.getInstance();
-	private String arrive = BookingRequest.getInstance().getListFile().get(0);
-	private String depart = BookingRequest.getInstance().getListFile().get(1);
-	private final String ACCESS_KEY = cf.getProperty("access.key");
-	public final String BASE_URL = cf.getProperty("base.url");
 	private CurrencyRate currency;
-	public int days = Integer.parseInt(day);
-	public int sum = total.getRoomPrice() + total.showBreakfast() + total.showExtraBed();
+	private int days = Integer.parseInt(day);
+	private int sum = total.getRoomPrice() + total.showBreakfast() + total.showExtraBed();
+	
+	private static ConfigFileManager cf = ConfigFileManager.getInstance();
+	private final String ACCESS_KEY = cf.getProperty("access.key");
+	private final String BASE_URL = cf.getProperty("base.url");
+	
+	private long tel = 0;
 
 	@FXML
 	public void initialize() throws IOException {
@@ -130,46 +142,72 @@ public class ConfirmController {
 
 	}
 
+	/**Show that you reserve successfully.*/
 	public void confirm(ActionEvent event) {
-		for (int i = 0; i < total.getNameRoom().size(); i++) {
-			collectIndatabase(total.getNameRoom().get(i));
-		}
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText(null);
-		alert.setContentText("You reserve already");
-		alert.showAndWait();
+		if (error()) {
+			for (int i = 0; i < total.getNameRoom().size(); i++) {
+				collectIndatabase(total.getNameRoom().get(i));
+			}
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setContentText("You reserve successfully!");
+			alert.showAndWait();
+		} 
 	}
 
+	/**
+	 * Collect the room that you reserve in Database.
+	 * @param nameRoom
+	 */
 	public void collectIndatabase(String nameRoom) {
 		String Name = name.getText().trim();
+		
 		switch (nameRoom) {
 		case ("suite"):
 			for (String s : RoomController.SutList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
-				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
+				db.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
+			
 			}
 			break;
 		case ("superior"):
 			for (String s : RoomController.SprList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
-				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
+				db.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
 			}
 			break;
 		case ("standard"):
 			for (String s : RoomController.StdList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
-				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
+				db.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
 			}
 			break;
 		case ("deluxe"):
 			for (String s : RoomController.DlxList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
-				bookingRoom.DatabaseManage.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
+				db.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
 			}
 			break;
 		default:
 			break;
 		}
-		DatabaseManage.collectName(Name, Long.parseLong(id.getText().trim()), Long.parseLong(call.getText().trim()));
+		db.collectName(Name, email.getText().trim(), tel);
+		
+			
+	}
+	
+	public boolean error(){
+		try{
+			tel = Long.parseLong(call.getText().trim());
+			
+		}catch(Exception e){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setContentText("Invalid value.");
+			alert.showAndWait();
+			return false;
+		}
+		
+		return true;
 	}
 }

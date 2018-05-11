@@ -5,13 +5,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Collect date and prople.
+ * @author Narisa and Tanasorn
+ *
+ */
 public class BookingRequest {
 	
 	private static BookingRequest instance;
 	private List<String> listFile;
 	
-	private BookingRequest(){
+	/**Create BookingRequest object.*/
+	public BookingRequest(){
 		listFile = new ArrayList<String>();
 	}
 
@@ -22,10 +27,12 @@ public class BookingRequest {
 		return instance;
 	}
 
+	/**Get list of BookingRequest.*/
 	public List<String> getListFile() {
 		return listFile;
 	}
 
+	/**Add any data in the list.*/
 	public List<String> addData(LocalDate checkin,LocalDate checkout,int day,int adult,int child){
 		listFile.add(checkin.toString());
 		listFile.add(checkout.toString());

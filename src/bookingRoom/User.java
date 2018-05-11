@@ -4,25 +4,39 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+/**
+ * User class for manage user.
+ * @author Narisa and Tanasorn
+ *
+ */
 public class User {
 	
 	private String name;
 	private String password;
 	
+	/**Create new user.*/
 	public User(String name, String password){
 		this.name = name;
 		this.password = password;
 	}
 	
+	/**Get name.*/
 	public String getName(){
 		return name;
 	}
 	
+	/**Get password.*/
 	public String getPassword(){
 		return password;
 	}
 	
+	private static DatabaseManage db = DatabaseManage.getInstance();
 	
+	/**
+	 * To encrypt the password.
+	 * @param passcode
+	 * @return encrypted password.
+	 */
 	public static String setPasscode(String passcode){
 		String collectPass = "";
         try {
@@ -41,12 +55,22 @@ public class User {
 		return collectPass;
     }
 	
+	/**
+	 * Add the user to database.
+	 * @param name
+	 * @param password
+	 */
 	public static void addUser(String name, String password){
-         DatabaseManage.addUser(name, setPasscode(password));
+         db.addUser(name, setPasscode(password));
+
 	}
 	
+	/**
+	 * Get all member from Database.
+	 * @return list of user.
+	 */
 	public static List<User> getMember(){
-		return DatabaseManage.getUser();
+		return db.getUser();
 	}
 	
 	@Override

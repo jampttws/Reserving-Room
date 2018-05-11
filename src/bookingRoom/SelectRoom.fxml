@@ -13,11 +13,6 @@
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1645.0" prefWidth="581.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="14.0" layoutY="12.0" prefHeight="21.0" prefWidth="131.0" text="Choose your room" textFill="#a46161">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <ImageView fitHeight="177.0" fitWidth="442.0" layoutX="70.0" layoutY="101.0">
                <image>
                   <Image url="@../image/Deluxe%20King.png.jpeg" />

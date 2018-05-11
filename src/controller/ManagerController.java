@@ -39,6 +39,7 @@ public class ManagerController{
     
     private ObservableList<Booked> all_data;
     private ObservableList<Booked> search_data;
+    private static DatabaseManage db = DatabaseManage.getInstance();
     
     @FXML
 	public void initialize(){
@@ -50,7 +51,7 @@ public class ManagerController{
   
     public void allReserved(ActionEvent event){	
         all_data = FXCollections.observableArrayList();
-        for(Booked b : DatabaseManage.bookedList()) all_data.add(b);
+        for(Booked b : db.bookedList()) all_data.add(b);
         
     	name.setCellValueFactory(new PropertyValueFactory<>("name"));
     	roomCode.setCellValueFactory(new PropertyValueFactory<>("roomCode"));
@@ -64,7 +65,7 @@ public class ManagerController{
     	String Name = getName.getText().trim();
     	
     	search_data = FXCollections.observableArrayList();
-        for(Booked b : DatabaseManage.bookedList(Name)) search_data.add(b);
+        for(Booked b : db.bookedList(Name)) search_data.add(b);
         
     	name.setCellValueFactory(new PropertyValueFactory<>("name"));
     	roomCode.setCellValueFactory(new PropertyValueFactory<>("roomCode"));
@@ -79,7 +80,7 @@ public class ManagerController{
     	Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setContentText(String.format("Do you want to remove room %s?", room_code));
 		alert.showAndWait();
-    	DatabaseManage.remove("reservingData", "roomNumber", room_code);
+    	db.remove("reservingData", "roomNumber", room_code);
     }
     
     

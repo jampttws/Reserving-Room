@@ -32,13 +32,13 @@ import javafx.scene.control.Label;
 public class RoomController extends ViewController{
 	
 	@FXML
-	ComboBox numDeluxe;
+	ComboBox<Integer> numDeluxe;
 	@FXML
-	ComboBox numSuite;
+	ComboBox<Integer> numSuite;
 	@FXML
-	ComboBox numSupe;
+	ComboBox<Integer> numSupe;
 	@FXML
-	ComboBox numStandard;
+	ComboBox<Integer> numStandard;
 	@FXML
 	Label costumerData;
 	@FXML
@@ -75,12 +75,16 @@ public class RoomController extends ViewController{
 	Button selectSupe;
 	@FXML
 	Button selectStandard;
+	@FXML
+	Button back;
 	
+	ObservableList<Integer> room = FXCollections.observableArrayList(1,2,3,4,5);
 	
 	private PageController open = super.getController();
 	private static Total total = Total.getinstance();
+	private static DatabaseManage db = DatabaseManage.getInstance();
+	
 	private BookingRequest bk = BookingRequest.getInstance();
-	ObservableList<Integer> room = FXCollections.observableArrayList(1,2,3,4,5);
 	public String arrive = bk.getListFile().get(0);
 	public String depart = bk.getListFile().get(1);
 	
@@ -101,6 +105,7 @@ public class RoomController extends ViewController{
 		selectSuite.setOnAction(this::selectSuiteRoom);
 		selectSupe.setOnAction(this::selectSupeRoom);
 		selectStandard.setOnAction(this::selectStandardRoom);
+//		back.setOnAction(this::back);
 		
 	}
 	
@@ -116,6 +121,11 @@ public class RoomController extends ViewController{
 		numSupe.getSelectionModel().select(0);
 	}
 	
+//	public void back(ActionEvent event){
+//		costumerData.setText("");
+//		open.openPage("Home.fxml");
+//	}
+	
 	/** Open ConfirmReserving page */
 	public void showComfirmPage(ActionEvent event){
 		open.openPage("ConfirmReserving.fxml");	
@@ -124,6 +134,7 @@ public class RoomController extends ViewController{
 	
 	/** Show the list of reserving day */
 	 public void showData(){
+//		 BookingRequest book = new BookingRequest();
 	  List<String> readfile = bk.getListFile();
 	  costumerData.setText(String.format("You reserve %s days including adult %s children %s"
 	    ,readfile.get(2),readfile.get(3),readfile.get(4)));
@@ -134,7 +145,7 @@ public class RoomController extends ViewController{
 	 }
 
 	 public List<String> showEmpty(String room){
-	  return DatabaseManage.emptyRoom(room, arrive, depart);
+	  return db.emptyRoom(room, arrive, depart);
 	 }
 
 	/** Add breakfast */
@@ -214,7 +225,7 @@ public class RoomController extends ViewController{
 	}
 	
 	public static List<String> Select(String room, int number) {
-		List<String> list = DatabaseManage.emptyRoom(room);
+		List<String> list = db.emptyRoom(room);
 		List<String> newList = new ArrayList<String>();
 		for(int i = 1; i <= number; i++){
 		   newList.add(list.get(0));
@@ -223,10 +234,15 @@ public class RoomController extends ViewController{
 		return newList;
 	}
 	
-	
+	/**
+	 * Check the room that you can reserve.
+	 * @param room
+	 * @param number
+	 * @return true if you can reserve that room.
+	 */
 	public boolean canReserve(String room, int number){
 		for(String str : Select(room, number)){
-			for(Booked b : DatabaseManage.bookedList()){
+			for(Booked b : db.bookedList()){
 				if(str.equals(b.getRoomCode())){
 					if(arrive.equals(b.getArrive()) || depart.equals(b.getDepart())) return false;
 					else if(arrive.equals(b.getDepart()) || depart.equals(b.getArrive())) return false;

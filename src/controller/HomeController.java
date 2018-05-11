@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import bookingRoom.BookingRequest;
@@ -50,23 +51,42 @@ public class HomeController extends ViewController {
 
 	@FXML
 	public void initialize() {
+		arrive.setEditable(false);
+		departure.setEditable(false);
 		search.setOnAction(this::showRoom);
 		signin.setOnAction(this::showSignin);
 		signup.setOnAction(this::showSignup);
 		arrive.setOnAction(this::warnDate);
 		departure.setOnAction(this::warnDate);
 		manager.setOnAction(this::showManager);
+		
+		
 	}
+	
+	
 
 	/** collect all data in this fxml */
 	public void collect() {
-		if (adult.getText().equals(""))
-			adult.setText("0");
-		if (children.getText().equals(""))
-			children.setText("0");
-		int numAdult = Integer.parseInt(adult.getText().trim());
-		int numChildren = Integer.parseInt(children.getText().trim());
-		book.addData(date.getCheckin(), date.getCheckout(), date.days(), numAdult, numChildren);
+//		adult.set
+		if (adult.getText().equals("")) adult.setText("0");
+		if (children.getText().equals("")) children.setText("0");
+	
+		try{
+			int numAdult = Integer.parseInt(adult.getText().trim());
+			int numChildren = Integer.parseInt(children.getText().trim());
+			if((numAdult <= 10) && (numChildren <= 10))
+			book.addData(date.getCheckin(), date.getCheckout(), date.days(), numAdult, numChildren);
+			else{
+			alert.setHeaderText("People text error");
+			alert.showAndWait();
+			}
+			
+		}catch (Exception e){
+			alert.setHeaderText("Invalid value, please insert again");
+			alert.showAndWait();
+		}
+	
+		
 
 	}
 
@@ -88,6 +108,7 @@ public class HomeController extends ViewController {
 
 	/** Show when choose the past date */
 	public void warnDate(ActionEvent event) {
+		
 		if (arrive.getValue() == null || departure.getValue() == null)
 			return;
 		now = LocalDate.now();
@@ -108,7 +129,7 @@ public class HomeController extends ViewController {
 			alert.showAndWait();
 		} else {
 			collect();
-			open.openPage("SelectRoom.fxml");
+			open.nextPage(event,"SelectRoom.fxml");
 		}
 
 	}
