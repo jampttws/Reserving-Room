@@ -19,6 +19,8 @@ public class DatabaseManage {
 
 	private static Connection connect;
 	private static Statement s;
+	private static ConfigFileManager cf = ConfigFileManager.getInstance();
+	private final static String DATABASE = cf.getProperty("database.url");
 
 	// reserving table
 	public static final String TABLE_RESERVE = "reservingData";
@@ -43,7 +45,7 @@ public class DatabaseManage {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://35.194.158.90/MintDB?useSSL=false", "jamp", "jamp");
+			connect = DriverManager.getConnection(DATABASE, "jamp", "jamp");
 			if (connect != null) {
 				// System.out.println("Database Connected.");
 				// connect.close();

@@ -23,6 +23,7 @@ public class SigninController extends ViewController{
 	Button signin;
 	
 	private PageController open = super.getController();
+	public static boolean checkMember = false;
 	
 	@FXML
 	public void initialize(){
@@ -38,8 +39,10 @@ public class SigninController extends ViewController{
 			alert.setTitle("Member");
 			alert.setContentText(String.format("User: %s", get.getName()));
 			alert.showAndWait();
+			checkMember = true;
 		}
 	}
+	
 	
 	/** 
 	 * @return true if user name and password correct 
@@ -52,6 +55,8 @@ public class SigninController extends ViewController{
 		}
 		return false;
 	}
+	
+
 	
 	public void showSignUp(ActionEvent event){
 			open.nextPage(event,"SignUp.fxml");

@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import bookingRoom.Booked;
 import bookingRoom.BookingRequest;
+import bookingRoom.ConfigFileManager;
 import bookingRoom.DatabaseManage;
 import bookingRoom.Total;
 import javafx.event.ActionEvent;
@@ -48,18 +49,18 @@ public class ConfirmController {
 
 	private static String day = BookingRequest.getInstance().getListFile().get(2);
 	private static Total total = Total.getinstance();
+	private static ConfigFileManager cf = ConfigFileManager.getInstance();
 	private String arrive = BookingRequest.getInstance().getListFile().get(0);
 	private String depart = BookingRequest.getInstance().getListFile().get(1);
-	private final String ACCESS_KEY = "72e8908d7c8a8c707e5b8e2c8eb2f102";
-	public final String BASE_URL = "http://apilayer.net/api/live?access_key=";
+	private final String ACCESS_KEY = cf.getProperty("access.key");
+	public final String BASE_URL = cf.getProperty("base.url");
 	private CurrencyRate currency;
 	public int days = Integer.parseInt(day);
 	public int sum = total.getRoomPrice() + total.showBreakfast() + total.showExtraBed();
-	
-	
+
 	@FXML
 	public void initialize() throws IOException {
-		if(comboBox != null){
+		if (comboBox != null) {
 			comboBox.getItems().addAll(currency.values());
 			comboBox.getSelectionModel().select(0);
 		}
@@ -75,13 +76,13 @@ public class ConfirmController {
 	}
 
 	public void handleCostRoom() {
-		
+
 		String name = "";
 
 		for (String n : total.getNameRoom()) {
 			name += " " + n + " ";
 		}
-		
+
 		bookingDay.setText(String.format("You reserve %s days", day));
 		confirmBreakfast.setText(
 				String.format("Add Breakfast %d bed = %d Baht", total.countBreakfast(), total.showBreakfast()));
@@ -90,23 +91,28 @@ public class ConfirmController {
 		nameRoom.setText("Including " + name + " room");
 		costRoom.setText(String.format("( %d + %d +%d ) x %d days = %d Baht", total.getRoomPrice(),
 				total.showBreakfast(), total.showExtraBed(), days, sum * days));
+		if (SigninController.checkMember)
+			discount.setText("Member discount 15% ");
 	}
-	
-	
-	/** Show when select currency on combo box*/
+
+	/** Show when select currency on combo box */
 	@FXML
-	public void handleCurrencyRate(ActionEvent event) throws IOException{
+	public void handleCurrencyRate(ActionEvent event) throws IOException {
 		currency = comboBox.getValue();
-		double thaiCurrency = currency.matchCurrency(readUrl(),currency.THB);
+		double thaiCurrency = currency.matchCurrency(readUrl(), currency.THB);
 		double rate = currency.matchCurrency(readUrl(), currency);
-		double result = (sum * days)*(rate/thaiCurrency);
-		totalPrice.setText(String.format("Total 	%4g", result));
-		
+		double result = (sum * days) * (rate / thaiCurrency);
+		if (SigninController.checkMember)
+			totalPrice.setText(String.format("Total 	%4g", result * (0.85)));
+		else
+			totalPrice.setText(String.format("Total 	%4g", result));
+
 	}
-	
-	/** 
-	 * Read the data of web service 
-	 * @return currency data  
+
+	/**
+	 * Read the data of web service
+	 * 
+	 * @return currency data
 	 * @throws IOException
 	 */
 	public String readUrl() throws IOException {
@@ -123,7 +129,6 @@ public class ConfirmController {
 		return data;
 
 	}
-	
 
 	public void confirm(ActionEvent event) {
 		for (int i = 0; i < total.getNameRoom().size(); i++) {

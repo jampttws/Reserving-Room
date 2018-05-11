@@ -35,23 +35,23 @@
             <Image url="@../image/Black_Sand_Color-Volcanic_Beach-1070x423.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="confirmBed" layoutX="552.0" layoutY="247.0" prefHeight="17.0" prefWidth="319.0" text="l" />
+      <Label fx:id="confirmBed" layoutX="552.0" layoutY="247.0" prefHeight="17.0" prefWidth="319.0" />
       <Button fx:id="confirm" layoutX="207.0" layoutY="446.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #720707;" text="Confirm" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Label fx:id="confirmBreakfast" layoutX="552.0" layoutY="271.0" prefHeight="17.0" prefWidth="319.0" text="l" />
-      <Label fx:id="bookingDay" layoutX="552.0" layoutY="189.0" text="Label" />
-      <Label fx:id="costRoom" layoutX="552.0" layoutY="302.0" text="Label" />
-      <Label fx:id="nameRoom" layoutX="552.0" layoutY="220.0" prefHeight="17.0" prefWidth="319.0" text="Label" />
+      <Label fx:id="confirmBreakfast" layoutX="552.0" layoutY="271.0" prefHeight="17.0" prefWidth="319.0" />
+      <Label fx:id="bookingDay" layoutX="552.0" layoutY="189.0" prefHeight="17.0" prefWidth="277.0" />
+      <Label fx:id="costRoom" layoutX="552.0" layoutY="302.0" prefHeight="17.0" prefWidth="333.0" />
+      <Label fx:id="nameRoom" layoutX="552.0" layoutY="220.0" prefHeight="17.0" prefWidth="319.0" />
       <Line endY="-150.0" layoutX="511.0" layoutY="307.0" startY="200.0" stroke="#8d8888" strokeMiterLimit="0.0" strokeWidth="5.0" />
       <Label layoutX="36.0" layoutY="153.0" text="Customer Information" textFill="#83210e">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="totalPrice" layoutX="547.0" layoutY="361.0" prefHeight="17.0" prefWidth="214.0" text="Total" />
+      <Label fx:id="totalPrice" layoutX="552.0" layoutY="361.0" prefHeight="17.0" prefWidth="214.0" text="Total" />
       <ComboBox fx:id="comboBox" layoutX="766.0" layoutY="356.0" prefHeight="27.0" prefWidth="117.0" />
-      <Label fx:id="discount" layoutX="552.0" layoutY="324.0" text="Label" />
+      <Label fx:id="discount" layoutX="552.0" layoutY="332.0" prefHeight="17.0" prefWidth="203.0" />
    </children>
 </Pane>

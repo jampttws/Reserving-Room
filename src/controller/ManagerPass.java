@@ -1,5 +1,6 @@
 package controller;
 
+import bookingRoom.ConfigFileManager;
 import bookingRoom.PageController;
 import bookingRoom.ViewController;
 import javafx.event.ActionEvent;
@@ -18,6 +19,9 @@ public class ManagerPass extends ViewController{
 	Button enter;
 	
 	private PageController open = super.getController();
+	private static ConfigFileManager cf = ConfigFileManager.getInstance();
+	private String USER = cf.getProperty("user.name");
+	private String PASS = cf.getProperty("password.pass");
 	
 	@FXML
 	public void initialize(){
@@ -25,7 +29,7 @@ public class ManagerPass extends ViewController{
 	}
 	
 	public void handleText(ActionEvent event){
-		if(userAdmin.getText().equals("admin")&&password.getText().equals("admin")){
+		if(userAdmin.getText().equals(USER)&&password.getText().equals(PASS)){
 			open.nextPage(event, "Manager.fxml");
 		}
 	}
