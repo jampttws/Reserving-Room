@@ -153,6 +153,11 @@ public class ConfirmController extends ViewController{
 			alert.setHeaderText(null);
 			alert.setContentText("You reserve successfully!");
 			alert.showAndWait();
+			br.getListFile().remove(0);
+			for (int i = 0; i < total.getBedList().size(); i++) total.getBedList().remove(i);
+			for (int i = 0; i < total.getBreakfastList().size(); i++) total.getBreakfastList().remove(i);
+			for (int i = 0; i < total.getCostRoom().size(); i++) total.getCostRoom().remove(i);
+			for (int i = 0; i < total.getNameRoom().size(); i++) total.getNameRoom().remove(i);
 			open.openPage("Home.fxml");
 			Stage stage = (Stage) confirm.getScene().getWindow();
 		    stage.close();

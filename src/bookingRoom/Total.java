@@ -15,6 +15,8 @@ public class Total {
 	private static Total instance;
 	private List<Integer> breakfastList;
 	private List<Integer> costRoom;
+	
+
 	private List<String> nameRoom;
 
 	
@@ -32,6 +34,7 @@ public class Total {
 		}
 		return instance;
 	}
+	
 
 	/**
 	 * Check room name 
@@ -48,6 +51,7 @@ public class Total {
 
 	/** Get name room lst */
 	public List<String> getNameRoom() {
+		
 		return nameRoom;
 	}
 
@@ -125,5 +129,8 @@ public class Total {
 	 */
 	public List<Integer> getBedList() {
 		return bedList;
+	}
+	public List<Integer> getCostRoom() {
+		return costRoom;
 	}
 }
