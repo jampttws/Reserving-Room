@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -85,7 +86,7 @@ public class RoomController extends ViewController{
 	private static Total total = Total.getinstance();
 	private static DatabaseManage db = DatabaseManage.getInstance();
 	
-	private BookingRequest bk = BookingRequest.getInstance();
+	private static BookingRequest bk = BookingRequest.getInstance();
 	public String arrive = bk.getListFile().get(0).getCheckin();
 	public String depart = bk.getListFile().get(0).getCheckout();
 	
@@ -130,6 +131,8 @@ public class RoomController extends ViewController{
 	/** Open ConfirmReserving page */
 	public void showComfirmPage(ActionEvent event){
 		open.openPage("ConfirmReserving.fxml");	
+		Stage stage = (Stage) confirm.getScene().getWindow();
+	    stage.close();
 	}
 	
 	

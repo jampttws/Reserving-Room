@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * Control the date and collect data of customer reserving.
@@ -59,15 +60,12 @@ public class HomeController extends ViewController {
 		arrive.setOnAction(this::warnDate);
 		departure.setOnAction(this::warnDate);
 		manager.setOnAction(this::showManager);
-		
-		
+			
 	}
 	
-	
-
 	/** collect all data in this fxml */
 	public void collect() {
-//		adult.set
+
 		if (adult.getText().equals("")) adult.setText("0");
 		if (children.getText().equals("")) children.setText("0");
 	
@@ -80,7 +78,6 @@ public class HomeController extends ViewController {
 			alert.setHeaderText("People text error");
 			alert.showAndWait();
 			}
-			
 		}catch (Exception e){
 			alert.setHeaderText("Invalid value, please insert again");
 			alert.showAndWait();
@@ -129,7 +126,9 @@ public class HomeController extends ViewController {
 			alert.showAndWait();
 		} else {
 			collect();
-			open.nextPage(event,"SelectRoom.fxml");
+			open.openPage("SelectRoom.fxml");
+			Stage stage = (Stage) search.getScene().getWindow();
+		    stage.close();
 		}
 
 	}

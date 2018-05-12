@@ -10,11 +10,14 @@ import bookingRoom.Booked;
 import bookingRoom.BookingRequest;
 import bookingRoom.ConfigFileManager;
 import bookingRoom.DatabaseManage;
+import bookingRoom.PageController;
 import bookingRoom.Total;
+import bookingRoom.ViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -25,7 +28,7 @@ import javafx.scene.control.TextField;
  * @author Narisa and Tanasorn
  *
  */
-public class ConfirmController {
+public class ConfirmController extends ViewController{
 
 	@FXML
 	TextField name;
@@ -53,6 +56,7 @@ public class ConfirmController {
 	Label totalPrice;
 
 	private static DatabaseManage db = DatabaseManage.getInstance();
+	private PageController open = super.getController();
 	
 	private static BookingRequest br = BookingRequest.getInstance();
 	private int day = br.getListFile().get(0).getDay();
@@ -149,6 +153,9 @@ public class ConfirmController {
 			alert.setHeaderText(null);
 			alert.setContentText("You reserve successfully!");
 			alert.showAndWait();
+			open.openPage("Home.fxml");
+			Stage stage = (Stage) confirm.getScene().getWindow();
+		    stage.close();
 		} 
 	}
 
