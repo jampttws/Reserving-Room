@@ -45,6 +45,11 @@ public class SigninController extends ViewController{
 			alert.setContentText(String.format("User: %s", get.getName()));
 			alert.showAndWait();
 			checkMember = true;
+		}else{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Member");
+			alert.setContentText(String.format("Please check username and password again"));
+			alert.showAndWait();
 		}
 	}
 	

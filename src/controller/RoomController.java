@@ -11,6 +11,7 @@ import bookingRoom.Booked;
 import bookingRoom.BookingRequest;
 import bookingRoom.DatabaseManage;
 import bookingRoom.PageController;
+import bookingRoom.ReservationData;
 import bookingRoom.Total;
 import bookingRoom.ViewController;
 import javafx.collections.FXCollections;
@@ -85,8 +86,8 @@ public class RoomController extends ViewController{
 	private static DatabaseManage db = DatabaseManage.getInstance();
 	
 	private BookingRequest bk = BookingRequest.getInstance();
-	public String arrive = bk.getListFile().get(0);
-	public String depart = bk.getListFile().get(1);
+	public String arrive = bk.getListFile().get(0).getCheckin();
+	public String depart = bk.getListFile().get(0).getCheckout();
 	
 	@FXML
 	public void initialize(){
@@ -135,9 +136,9 @@ public class RoomController extends ViewController{
 	/** Show the list of reserving day */
 	 public void showData(){
 //		 BookingRequest book = new BookingRequest();
-	  List<String> readfile = bk.getListFile();
-	  costumerData.setText(String.format("You reserve %s days including adult %s children %s"
-	    ,readfile.get(2),readfile.get(3),readfile.get(4)));
+	  List<ReservationData> readfile = bk.getListFile();
+	  costumerData.setText(String.format("You reserve %d days including adult %d children %d"
+	    ,readfile.get(0).getDay(),readfile.get(0).getAdult(),readfile.get(0).getChild()));
 	  deluxe.setText(String.format("%s rooms avilable", showEmpty("dlx").size()));
 	  suite.setText(String.format("%s rooms avilable", showEmpty("sut").size()));
 	  superior.setText(String.format("%s rooms avilable", showEmpty("spr").size()));

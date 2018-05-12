@@ -74,7 +74,7 @@ public class HomeController extends ViewController {
 		try{
 			int numAdult = Integer.parseInt(adult.getText().trim());
 			int numChildren = Integer.parseInt(children.getText().trim());
-			if((numAdult <= 10) && (numChildren <= 10))
+			if((numAdult <= 20) && (numChildren <= 20))
 			book.addData(date.getCheckin(), date.getCheckout(), date.days(), numAdult, numChildren);
 			else{
 			alert.setHeaderText("People text error");

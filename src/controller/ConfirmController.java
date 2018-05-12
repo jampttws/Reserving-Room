@@ -55,13 +55,12 @@ public class ConfirmController {
 	private static DatabaseManage db = DatabaseManage.getInstance();
 	
 	private static BookingRequest br = BookingRequest.getInstance();
-	private String day = br.getListFile().get(2);
-	private String arrive = br.getListFile().get(0);
-	private String depart = br.getListFile().get(1);
+	private int day = br.getListFile().get(0).getDay();
+	private String arrive = br.getListFile().get(0).getCheckin();
+	private String depart = br.getListFile().get(0).getCheckout();
 	
 	private static Total total = Total.getinstance();
 	private CurrencyRate currency;
-	private int days = Integer.parseInt(day);
 	private int sum = total.getRoomPrice() + total.showBreakfast() + total.showExtraBed();
 	
 	private static ConfigFileManager cf = ConfigFileManager.getInstance();
@@ -88,9 +87,8 @@ public class ConfirmController {
 	}
 
 	public void handleCostRoom() {
-
 		String name = "";
-
+		double result = (sum * day)*0.85;
 		for (String n : total.getNameRoom()) {
 			name += " " + n + " ";
 		}
@@ -102,9 +100,9 @@ public class ConfirmController {
 				.setText(String.format("Add extra-bed %d bed = %d Baht", total.countExtraBed(), total.showExtraBed()));
 		nameRoom.setText("Including " + name + " room");
 		costRoom.setText(String.format("( %d + %d +%d ) x %d days = %d Baht", total.getRoomPrice(),
-				total.showBreakfast(), total.showExtraBed(), days, sum * days));
+				total.showBreakfast(), total.showExtraBed(), day, sum * day));
 		if (SigninController.checkMember)
-			discount.setText("Member discount 15% ");
+			discount.setText(String.format("Member discount 15%% =  %4g", result));
 	}
 
 	/** Show when select currency on combo box */
@@ -113,7 +111,7 @@ public class ConfirmController {
 		currency = comboBox.getValue();
 		double thaiCurrency = currency.matchCurrency(readUrl(), currency.THB);
 		double rate = currency.matchCurrency(readUrl(), currency);
-		double result = (sum * days) * (rate / thaiCurrency);
+		double result = (sum * day) * (rate / thaiCurrency);
 		if (SigninController.checkMember)
 			totalPrice.setText(String.format("Total 	%4g", result * (0.85)));
 		else
@@ -123,7 +121,6 @@ public class ConfirmController {
 
 	/**
 	 * Read the data of web service
-	 * 
 	 * @return currency data
 	 * @throws IOException
 	 */

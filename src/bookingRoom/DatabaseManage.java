@@ -47,6 +47,7 @@ public class DatabaseManage {
 	public static DatabaseManage getInstance(){
 		if(instance == null){
 			instance = new DatabaseManage();
+			
 		}
 		return instance;
 	}
@@ -56,30 +57,15 @@ public class DatabaseManage {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager.getConnection(DATABASE, "jamp", "jamp");
-			if (connect != null) {
-				// System.out.println("Database Connected.");
-				// connect.close();
-			} else {
+			if (connect == null) 
 				System.out.println("Database Connect Failed.");
-			}
 			s = connect.createStatement();
-			
-//			 String sql3 = "CREATE TABLE customer(name varchar(255), email varchar(255), number bigint)";
-//		     s.execute(sql3);
 			
 		} catch (ClassNotFoundException e) {
 			System.out.print(e.getMessage());
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
 		}
-		// String sql1 = "CREATE TABLE reservingData(reserveCode int,
-		// roomNumber varchar(255), arrive varchar(255), depart varchar(255),
-		// name varchar(255))";
-		// String sql2 = "CREATE TABLE customer(name varchar(255), id int)";
-		// String sql4 = "DELETE FROM reservingData WHERE reserveCode =
-		// 125520181";
-		
-
 	}
 
 	/**
@@ -89,7 +75,6 @@ public class DatabaseManage {
 	 * @return list
 	 */
 	public List<String> get(String want, String sql) {
-		connect();
 		List<String> code = new ArrayList<String>();
 		ResultSet rs = null;
 		try {
@@ -161,7 +146,6 @@ public class DatabaseManage {
 
 	/**Collect name in database.*/
 	public void collectName(String name, String email, long number) {
-		connect();
 		String sql = "INSERT INTO " + TABLE_CUSTOMER + " VALUES" + String.format("('%s','%s',%d)", name, email, number);
 
 		try {
@@ -173,7 +157,6 @@ public class DatabaseManage {
 
 	/** Update reserving data to database. */
 	public void updateReserving(int reserveCode, String roomCode, String arrive, String depart, String name) {
-		connect();
 		String sql = "INSERT INTO " + TABLE_RESERVE + " VALUES"
 				+ String.format("(%d,'%s','%s','%s','%s')", reserveCode, roomCode, arrive, depart, name);
 		try {
@@ -241,7 +224,6 @@ public class DatabaseManage {
 
 	/** Remove data from database. */
 	public void remove(String from, String where, String want) {
-		connect();
 		String sql = String.format("DELETE FROM %s WHERE %s = '%s'", from, where, want);
 		try {
 			s.execute(sql);
@@ -252,12 +234,10 @@ public class DatabaseManage {
 	
 	/** Add user to database. */
 	public void addUser(String name, String pass){
-		connect();
 		String sql = "INSERT INTO " + TABLE_USER + " VALUES" + String.format("('%s','%s')", name, pass);
 		try {
 			s.execute(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -3,9 +3,19 @@ package controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Fix type currency by enum.
+ * @author Narisa and Tanasorn
+ *
+ */
 public enum CurrencyRate {
 	SELECT,USD,THB,EUR,HKD,JPY,CNY;
 
+	/**
+	 * Match data of currency
+	 * @param data is type of currency
+	 * @return value of matching currency
+	 */
 	public double matchCurrency(String data, CurrencyRate curr) {
 
 		String regex = "\"USD([A-Z]{3})\":\\s*(\\d*.\\d+)";
@@ -33,9 +43,7 @@ public enum CurrencyRate {
 				if (currency.equals("JPY")) return values;
 			case THB:
 				if (currency.equals("THB")) return values;
-			
 			}
-			
 			offset = match.end();
 		}
 		return 0;

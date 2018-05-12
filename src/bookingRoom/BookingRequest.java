@@ -13,11 +13,11 @@ import java.util.List;
 public class BookingRequest {
 	
 	private static BookingRequest instance;
-	private List<String> listFile;
+	private List<ReservationData> listFile;
 	
 	/**Create BookingRequest object.*/
 	public BookingRequest(){
-		listFile = new ArrayList<String>();
+		listFile = new ArrayList<ReservationData>();
 	}
 
 	public static BookingRequest getInstance(){
@@ -28,17 +28,13 @@ public class BookingRequest {
 	}
 
 	/**Get list of BookingRequest.*/
-	public List<String> getListFile() {
+	public List<ReservationData> getListFile() {
 		return listFile;
 	}
 
 	/**Add any data in the list.*/
-	public List<String> addData(LocalDate checkin,LocalDate checkout,int day,int adult,int child){
-		listFile.add(checkin.toString());
-		listFile.add(checkout.toString());
-		listFile.add(String.format("%d",day));
-		listFile.add(String.format("%d", adult));
-		listFile.add(String.format("%d", child));
+	public List<ReservationData> addData(LocalDate checkin,LocalDate checkout,int day,int adult,int child){
+		listFile.add(new ReservationData(checkin.toString(), checkout.toString(), day, adult, child));
 		return listFile;
 		
 	}
