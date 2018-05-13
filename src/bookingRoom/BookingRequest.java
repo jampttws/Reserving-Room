@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Collect date and prople.
+ * Collect date and people.
  * @author Narisa and Tanasorn
  *
  */

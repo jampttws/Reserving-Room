@@ -1,34 +1,49 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Optional;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import bookingRoom.Booked;
 import bookingRoom.BookingRequest;
 import bookingRoom.ConfigFileManager;
 import bookingRoom.DatabaseManage;
 import bookingRoom.PageController;
+import bookingRoom.Receipt;
 import bookingRoom.Total;
 import bookingRoom.ViewController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
  * Controller for Confirming UI that show receipt and enter confirmation.
+ * 
  * @author Narisa and Tanasorn
  *
  */
-public class ConfirmController extends ViewController{
+public class ConfirmController extends ViewController {
 
 	@FXML
 	TextField name;
@@ -54,23 +69,27 @@ public class ConfirmController extends ViewController{
 	ComboBox<CurrencyRate> comboBox;
 	@FXML
 	Label totalPrice;
+	@FXML
+	Button download;
 
 	private static DatabaseManage db = DatabaseManage.getInstance();
 	private PageController open = super.getController();
-	
+
 	private static BookingRequest br = BookingRequest.getInstance();
 	private int day = br.getListFile().get(0).getDay();
 	private String arrive = br.getListFile().get(0).getCheckin();
 	private String depart = br.getListFile().get(0).getCheckout();
-	
+
 	private static Total total = Total.getinstance();
 	private CurrencyRate currency;
 	private int sum = total.getRoomPrice() + total.showBreakfast() + total.showExtraBed();
-	
+
 	private static ConfigFileManager cf = ConfigFileManager.getInstance();
 	private final String ACCESS_KEY = cf.getProperty("access.key");
 	private final String BASE_URL = cf.getProperty("base.url");
-	
+
+	private Receipt receipt = new Receipt();
+
 	private long tel = 0;
 
 	@FXML
@@ -91,18 +110,13 @@ public class ConfirmController extends ViewController{
 	}
 
 	public void handleCostRoom() {
-		String name = "";
-		double result = (sum * day)*0.85;
-		for (String n : total.getNameRoom()) {
-			name += " " + n + " ";
-		}
-
+		double result = (sum * day) * 0.85;
 		bookingDay.setText(String.format("You reserve %s days", day));
 		confirmBreakfast.setText(
 				String.format("Add Breakfast %d bed = %d Baht", total.countBreakfast(), total.showBreakfast()));
 		confirmBed
 				.setText(String.format("Add extra-bed %d bed = %d Baht", total.countExtraBed(), total.showExtraBed()));
-		nameRoom.setText("Including " + name + " room");
+		nameRoom.setText("Including " + receipt.nameR() + " room");
 		costRoom.setText(String.format("( %d + %d +%d ) x %d days = %d Baht", total.getRoomPrice(),
 				total.showBreakfast(), total.showExtraBed(), day, sum * day));
 		if (SigninController.checkMember)
@@ -125,6 +139,7 @@ public class ConfirmController extends ViewController{
 
 	/**
 	 * Read the data of web service
+	 * 
 	 * @return currency data
 	 * @throws IOException
 	 */
@@ -143,7 +158,7 @@ public class ConfirmController extends ViewController{
 
 	}
 
-	/**Show that you reserve successfully.*/
+	/** Show that you reserve successfully. */
 	public void confirm(ActionEvent event) {
 		if (error()) {
 			for (int i = 0; i < total.getNameRoom().size(); i++) {
@@ -153,30 +168,43 @@ public class ConfirmController extends ViewController{
 			alert.setHeaderText(null);
 			alert.setContentText("You reserve successfully!");
 			alert.showAndWait();
+
+			Alert alertReceipt = new Alert(AlertType.CONFIRMATION);
+			alertReceipt.setTitle("Confirmation Dialog");
+			alertReceipt.setHeaderText("Receipt");
+			alertReceipt.setContentText("Do you want to print receipt?");
+			Optional<ButtonType> showButton = alertReceipt.showAndWait();
+			if (showButton.get() == ButtonType.OK) {
+				receipt.receipt(name.getText());
+			} else if(showButton.get() == ButtonType.CANCEL) {
+				alertReceipt.close();
+			}
 			br.getListFile().remove(0);
-			for (int i = 0; i < total.getBedList().size(); i++) total.getBedList().remove(i);
-			for (int i = 0; i < total.getBreakfastList().size(); i++) total.getBreakfastList().remove(i);
-			for (int i = 0; i < total.getCostRoom().size(); i++) total.getCostRoom().remove(i);
-			for (int i = 0; i < total.getNameRoom().size(); i++) total.getNameRoom().remove(i);
+			total.getBedList().clear();
+			total.getBreakfastList().clear();
+			total.getNameRoom().clear();
+			total.getCostRoom().clear();
+		
 			open.openPage("Home.fxml");
 			Stage stage = (Stage) confirm.getScene().getWindow();
-		    stage.close();
-		} 
+			stage.close();
+		}
 	}
 
 	/**
 	 * Collect the room that you reserve in Database.
+	 * 
 	 * @param nameRoom
 	 */
 	public void collectIndatabase(String nameRoom) {
 		String Name = name.getText().trim();
-		
+
 		switch (nameRoom) {
 		case ("suite"):
 			for (String s : RoomController.SutList) {
 				Booked bk = new Booked(s, arrive, depart, Name);
 				db.updateReserving(bk.getReserveCode(), bk.getRoomCode(), arrive, depart, Name);
-			
+
 			}
 			break;
 		case ("superior"):
@@ -201,22 +229,21 @@ public class ConfirmController extends ViewController{
 			break;
 		}
 		db.collectName(Name, email.getText().trim(), tel);
-		
-			
+
 	}
-	
-	public boolean error(){
-		try{
+
+	public boolean error() {
+		try {
 			tel = Long.parseLong(call.getText().trim());
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setHeaderText(null);
 			alert.setContentText("Invalid value.");
 			alert.showAndWait();
 			return false;
 		}
-		
+
 		return true;
 	}
 }

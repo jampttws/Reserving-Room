@@ -3,42 +3,42 @@ package bookingRoom;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Total class for collect value consist of extra bed, breakfast, etc.≥
+ * 
  * @author Narisa and Tanasorn
  *
  */
-public class Total {
+public class Total extends Observable {
 
 	private List<Integer> bedList;
 	private static Total instance;
 	private List<Integer> breakfastList;
 	private List<Integer> costRoom;
-	
-
 	private List<String> nameRoom;
 
-	
 	private Total() {
 		bedList = new ArrayList<>();
 		breakfastList = new ArrayList<>();
 		costRoom = new ArrayList<>();
 		nameRoom = new ArrayList<>();
 	}
-	
-	/**Get instance of Total.*/
+
+	/** Get instance of Total. */
 	public static Total getinstance() {
 		if (instance == null) {
 			instance = new Total();
 		}
 		return instance;
 	}
-	
 
 	/**
-	 * Check room name 
-	 * @param Type of hotel room.
+	 * Check room name
+	 * 
+	 * @param Type
+	 *            of hotel room.
 	 * @return true if name in list nameRoom equal name of type.
 	 */
 	public boolean roomName(String name) {
@@ -51,7 +51,6 @@ public class Total {
 
 	/** Get name room lst */
 	public List<String> getNameRoom() {
-		
 		return nameRoom;
 	}
 
@@ -65,13 +64,14 @@ public class Total {
 	/** Add room price */
 	public void addPrice(int room) {
 		costRoom.add(room);
+		changeAndNotify();
 	}
 
-	/** 
+	/**
 	 * 
 	 * @return Price of room.
 	 */
-	public int getRoomPrice(){
+	public int getRoomPrice() {
 		int result = 0;
 		for (int i = 0; i < costRoom.size(); i++) {
 			result += costRoom.get(i);
@@ -79,9 +79,10 @@ public class Total {
 		return result;
 	}
 
-	/** Add breakfast price*/
+	/** Add breakfast price */
 	public void addbreakfast() {
 		breakfastList.add(300);
+		changeAndNotify();
 	}
 
 	/** Sum all breakfast */
@@ -113,24 +114,41 @@ public class Total {
 	/** Add extra bed price */
 	public void addBed() {
 		bedList.add(500);
+		changeAndNotify();
 	}
-	
+
 	/**
 	 * Get breakfast list
+	 * 
 	 * @return List of breakfast
 	 */
 	public List<Integer> getBreakfastList() {
 		return breakfastList;
 	}
-	
+
 	/**
 	 * Get extra bed list
+	 * 
 	 * @return List of extra bed
 	 */
 	public List<Integer> getBedList() {
 		return bedList;
 	}
+
+	/**
+	 * Get cost of room.
+	 * 
+	 * @return list of cost room.
+	 */
 	public List<Integer> getCostRoom() {
 		return costRoom;
+
 	}
+
+	/** Notify observer. */
+	public void changeAndNotify() {
+		setChanged();
+		notifyObservers();
+	}
+
 }

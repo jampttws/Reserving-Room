@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 /**
  * Control the date and collect data of customer reserving.
  * 
- * @author Narisa Singngam
+ * @author Narisa and Tanasorn
  *
  */
 public class HomeController extends ViewController {
@@ -60,33 +60,36 @@ public class HomeController extends ViewController {
 		arrive.setOnAction(this::warnDate);
 		departure.setOnAction(this::warnDate);
 		manager.setOnAction(this::showManager);
-			
-	}
-	
-	/** collect all data in this fxml */
-	public void collect() {
 
-		if (adult.getText().equals("")) adult.setText("0");
-		if (children.getText().equals("")) children.setText("0");
-	
-		try{
+	}
+
+	/** collect all data in this fxml */
+	public boolean collect() {
+
+		if (adult.getText().equals(""))
+			adult.setText("0");
+		if (children.getText().equals(""))
+			children.setText("0");
+
+		try {
 			int numAdult = Integer.parseInt(adult.getText().trim());
 			int numChildren = Integer.parseInt(children.getText().trim());
-			if((numAdult <= 20) && (numChildren <= 20))
-			book.addData(date.getCheckin(), date.getCheckout(), date.days(), numAdult, numChildren);
-			else{
-			alert.setHeaderText("People text error");
-			alert.showAndWait();
+			if ((numAdult <= 20) && (numChildren <= 20)) {
+				book.addData(date.getCheckin(), date.getCheckout(), date.days(), numAdult, numChildren);
+				return true;
 			}
-		}catch (Exception e){
+
+		} catch (Exception e) {
 			alert.setHeaderText("Invalid value, please insert again");
 			alert.showAndWait();
+			return false;
 		}
-	
-		
+
+		alert.setHeaderText("People text error");
+		alert.showAndWait();
+		return false;
 
 	}
-
 
 	/** Show date that costumer can reserve. */
 	public void handleDate() {
@@ -105,7 +108,7 @@ public class HomeController extends ViewController {
 
 	/** Show when choose the past date */
 	public void warnDate(ActionEvent event) {
-		
+
 		if (arrive.getValue() == null || departure.getValue() == null)
 			return;
 		now = LocalDate.now();
@@ -125,10 +128,12 @@ public class HomeController extends ViewController {
 			alert.setHeaderText("How many guests?");
 			alert.showAndWait();
 		} else {
-			collect();
+			if(collect()){
 			open.openPage("SelectRoom.fxml");
 			Stage stage = (Stage) search.getScene().getWindow();
-		    stage.close();
+			stage.close();
+			}
+			
 		}
 
 	}

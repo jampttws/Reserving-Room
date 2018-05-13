@@ -50,8 +50,8 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="totalPrice" layoutX="552.0" layoutY="361.0" prefHeight="17.0" prefWidth="214.0" text="Total" />
+      <Label fx:id="totalPrice" layoutX="552.0" layoutY="361.0" prefHeight="17.0" prefWidth="214.0" text="Total" textFill="#b51d1d" />
       <ComboBox fx:id="comboBox" layoutX="766.0" layoutY="356.0" prefHeight="27.0" prefWidth="117.0" />
-      <Label fx:id="discount" layoutX="552.0" layoutY="332.0" prefHeight="17.0" prefWidth="203.0" />
+      <Label fx:id="discount" layoutX="552.0" layoutY="332.0" prefHeight="17.0" prefWidth="319.0" />
    </children>
 </Pane>

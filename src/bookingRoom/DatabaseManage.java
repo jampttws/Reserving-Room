@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Connect and collect data to database.
  * 
- * @author Tanasorn Tritawisup
+ * @author Narisa and Tanasorn
  *
  */
 
@@ -22,7 +22,9 @@ public class DatabaseManage {
 	
 	private ConfigFileManager cf = ConfigFileManager.getInstance();
 	private final String DATABASE = cf.getProperty("database.url");
-
+    private final String USERNAME = "jamp";
+	private final String PASSWORD = "jamp";
+	
 	// reserving table
 	public final String TABLE_RESERVE = "reservingData";
 	public final String COLUMN_RESERVECODE = "reservingCode";
@@ -56,7 +58,7 @@ public class DatabaseManage {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection(DATABASE, "jamp", "jamp");
+			connect = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
 			if (connect == null) 
 				System.out.println("Database Connect Failed.");
 			s = connect.createStatement();
@@ -70,9 +72,9 @@ public class DatabaseManage {
 
 	/**
 	 * Get list.
-	 * @param want
-	 * @param sql
-	 * @return list
+	 * @param expected data.
+	 * @param database command.
+	 * @return list that you expected.
 	 */
 	public List<String> get(String want, String sql) {
 		List<String> code = new ArrayList<String>();
@@ -98,9 +100,8 @@ public class DatabaseManage {
 	 * @return list of room.
 	 */
 	public List<String> SuggestRoom(String room) {
-		String sql = "SELECT " + COLUMN_ROOM + " FROM " + TABLE_ROOM + " WHERE " + COLUMN_ROOM + " LIKE '" + room
-				+ "%'";
-		return get(COLUMN_ROOM, sql);
+		String sql =  String.format("SELECT %s FROM %s WHERE %s LIKE '%s%%'", COLUMN_ROOM, TABLE_ROOM, COLUMN_ROOM, room);
+		  return get(COLUMN_ROOM, sql);
 	}
 
 	/**
@@ -109,8 +110,7 @@ public class DatabaseManage {
 	 * @return list of empty room.
 	 */
 	public List<String> emptyRoom(String roomname) {
-		String sql = "SELECT " + COLUMN_ROOM + " FROM " + TABLE_RESERVE + " WHERE " + COLUMN_ROOM + " LIKE '" + roomname
-				+ "%'";
+		String sql = String.format("SELECT %s FROM %s WHERE %s LIKE '%s%%'", COLUMN_ROOM, TABLE_RESERVE, COLUMN_ROOM, roomname);
 
 		List<String> all = SuggestRoom(roomname);
 
@@ -130,9 +130,9 @@ public class DatabaseManage {
 	 * @return list of room.
 	 */
 	public List<String> emptyRoom(String roomname, String arrive, String depart) {
-		String sql = "SELECT " + COLUMN_ROOM + " FROM " + TABLE_RESERVE + " WHERE " + COLUMN_ROOM + " LIKE '" + roomname
-				+ "%'" + " AND " + COLUMN_ARRIVE + " = '" + arrive + "' AND " + COLUMN_DEPART + " = '" + depart + "'";
-
+		String sql = String.format("SELECT %s FROM %s WHERE %s LIKE '%s%%' AND %s = '%s' AND %s = '%s'",
+			    COLUMN_ROOM, TABLE_RESERVE, COLUMN_ROOM, roomname, COLUMN_ARRIVE, arrive,  COLUMN_DEPART, depart);
+		
 		List<String> all = SuggestRoom(roomname);
 
 		for (String s : get(COLUMN_ROOM, sql)) {
@@ -146,8 +146,7 @@ public class DatabaseManage {
 
 	/**Collect name in database.*/
 	public void collectName(String name, String email, long number) {
-		String sql = "INSERT INTO " + TABLE_CUSTOMER + " VALUES" + String.format("('%s','%s',%d)", name, email, number);
-
+		String sql = String.format("INSERT INTO %s VALUES('%s','%s',%d)", TABLE_CUSTOMER, name, email, number);
 		try {
 			s.execute(sql);
 		} catch (SQLException e) {
@@ -157,8 +156,8 @@ public class DatabaseManage {
 
 	/** Update reserving data to database. */
 	public void updateReserving(int reserveCode, String roomCode, String arrive, String depart, String name) {
-		String sql = "INSERT INTO " + TABLE_RESERVE + " VALUES"
-				+ String.format("(%d,'%s','%s','%s','%s')", reserveCode, roomCode, arrive, depart, name);
+		String sql = String.format("INSERT INTO %s VALUES(%d,'%s','%s','%s','%s')",
+				TABLE_RESERVE, reserveCode, roomCode, arrive, depart, name);
 		try {
 			s.execute(sql);
 		} catch (SQLException e) {
@@ -166,28 +165,28 @@ public class DatabaseManage {
 		}
 	}
 
-	/**
-	 * Get data that you want from database.
-	 * @param want
-	 * @param from
-	 * @return list that you want.
-	 */
-	public List<String> databaseData(String want, String from) {
-		String sql = String.format("SELECT %s FROM %s", want, from);
-		return get(want, sql);
-	}
+	 /**
+	  * Get data that you want from database.
+	  * @param expected data.
+	  * @param table that you want to get data.
+	  * @return list that you want.
+	  */
+	 public List<String> databaseData(String want, String from) {
+	    String sql = String.format("SELECT %s FROM %s", want, from);
+	    return get(want, sql);
+	 }
 
-	/**
-	 * Get data that you want from database with name.
-	 * @param want
-	 * @param from
-	 * @param name
-	 * @return list that you want.
-	 */
-	public List<String> databaseData(String want, String from, String name) {
-		String sql = String.format("SELECT %s FROM %s WHERE %s LIKE '", want, from, COLUMN_NAME) + name + "%'";
-		return get(want, sql);
-	}
+	 /**
+	  * Get data that you want from database with name.
+	  * @param expected data.
+	  * @param table that you want to get data.
+	  * @param expected name.
+	  * @return list that you want.
+	  */
+	 public List<String> databaseData(String want, String from, String name) {
+	   String sql = String.format("SELECT %s FROM %s WHERE %s LIKE '%s'", want, from, COLUMN_NAME, name);
+	   return get(want, sql);
+	 }
 
 	/**
 	 * Get reserving list with name.
@@ -234,7 +233,7 @@ public class DatabaseManage {
 	
 	/** Add user to database. */
 	public void addUser(String name, String pass){
-		String sql = "INSERT INTO " + TABLE_USER + " VALUES" + String.format("('%s','%s')", name, pass);
+		String sql =  String.format("INSERT INTO %s VALUES('%s','%s')", TABLE_USER, name, pass);
 		try {
 			s.execute(sql);
 		} catch (SQLException e) {
