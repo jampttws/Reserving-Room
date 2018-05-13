@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+## Reserving-Room application
 
-You can use the [editor on GitHub](https://github.com/narisasingngam/Reserving-Room/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### authors:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Tanasorn Tritawisup(@jampttws) & Narisa Singngam(@narisasingngam)
 
-### Markdown
+### Description
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Reserving room program is a program for reserving room of the hotel. User can select the date that user want, how many people(child or adult) then it will show the available room. You can select a type of room that you want and also add optional like breakfast and extra bed. The program will show the price that you have to pay and you can select the currency. When customer confirm reserving it will update the program and administrator can see who have reserved room.
 
-```markdown
-Syntax highlighted code block
+### Feature
 
-# Header 1
-## Header 2
-### Header 3
+- Customer can reserve room and add optional(extra bed and breakfast).
+- Manager can see all reserved data and can delete room in the case that customer want to cancel.
+- Customer can be a member for using 15% member discount.
+- Application will convert currency for the customer if there are foreigner.
+- After you selected room and clicked confirm buttom, the program will show a list of all thing that you select and show total money.
 
-- Bulleted
-- List
+### How to use
 
-1. Numbered
-2. List
+1.First, you have to choose arrive, depart date and insert people.
+- on the right angle you can click sign in and sign up button to show that you are a member.
+- on the left angle has a manager button.
 
-**Bold** and _Italic_ and `Code` text
+[![Screen_Shot_2561-05-13_at_1.22.29_AM.png](https://s9.postimg.cc/fjripzhm7/Screen_Shot_2561-05-13_at_1.22.29_AM.png)](https://postimg.cc/image/wx1t4ucx7/)
 
-[Link](url) and ![Image](src)
-```
+2.When you click search button the program will show you a room. 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+[![Screen_Shot_2561-05-13_at_1.24.40_AM.png](https://s9.postimg.cc/tvfm8ec8v/Screen_Shot_2561-05-13_at_1.24.40_AM.png)](https://postimg.cc/image/sge1job5n/)
 
-### Jekyll Themes
+3.After you confirm, you have to insert your information and click confirm. Your reserving is finished!. 
+ - list of your selected and total money will show on the right side.
+ 
+[![Screen_Shot_2561-05-13_at_1.26.08_AM.png](https://s9.postimg.cc/9o26g7wsv/Screen_Shot_2561-05-13_at_1.26.08_AM.png)](https://postimg.cc/image/dkfic7hsb/)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/narisasingngam/Reserving-Room/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+4.If you click manager button it will show pop up page to confirm password.
+- manager can see reserved data and can find reserved list of any customer.
 
-### Support or Contact
+[![Screen_Shot_2561-05-13_at_1.24.00_AM.png](https://s9.postimg.cc/vzzz9myhr/Screen_Shot_2561-05-13_at_1.24.00_AM.png)](https://postimg.cc/image/xf1jyczkr/)
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Design Pattern
+
+ Pattern   |                class               |
+ ----------|----------------------------------- |
+ Singleton | Total, bookRequest, DatabaseManage |
+ ----------|------------------------------------|
+ Observer  | Total, Counter                     |
+ ----------|------------------------------------|
+
+web service to get rate currency. - https://currencylayer.com
