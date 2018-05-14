@@ -1,5 +1,7 @@
 ## Reserving-Room application
 
+[download](https://github.com/narisasingngam/Reserving-Room/releases/download/1.0/Reserving-Room.jar)
+
 ### authors:
 
 Tanasorn Tritawisup(@jampttws) & Narisa Singngam(@narisasingngam)
