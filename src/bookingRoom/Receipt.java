@@ -36,8 +36,6 @@ public class Receipt {
 		File output = null;
 
 		fileChooser = new FileChooser();
-		fileChooser.setInitialFileName("bookingReceipt.pdf");
-		fileChooser.setInitialDirectory(new File("src"));
 		output = fileChooser.showSaveDialog(new Stage());
 
 		try {
@@ -102,7 +100,7 @@ public class Receipt {
 			document.close();
 
 		} catch (FileNotFoundException | DocumentException e) {
-			e.printStackTrace();
+			System.out.println("File not found");
 		}
 
 	}
