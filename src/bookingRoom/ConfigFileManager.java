@@ -34,7 +34,7 @@ public class ConfigFileManager {
 		try {
 			properties.load(input);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Can not read file");
 		}finally{
 			try {
 				input.close();
